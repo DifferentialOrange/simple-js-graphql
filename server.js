@@ -26,14 +26,45 @@ function PrintResponse(response) {
   }
 }
 
-graphql({
-  schema,
-  source: '{ test(arg1: 1.1111111)  { arg1 } }',
-  rootValue
-}).then(PrintResponse);
+function BuildTestCase(argument_type, argument_nullability, value) {
+  var argument_str
 
-graphql({
-  schema,
-  source: '{ test(arg1: null)  { arg1 } }',
-  rootValue
-}).then(PrintResponse);
+  if (argument_nullability) {
+    argument_str = `${argument_type}!`
+  } else {
+    argument_str = argument_type
+  }
+
+  var schema_str = `
+    type result {
+      arg1: ${argument_str}
+    }
+
+    type Query {
+      test(arg1: ${argument_str}): result
+    }
+  `
+
+  var schema = buildSchema(schema_str);
+
+  var value_str
+  if (value === null) {
+    value_str = 'null'
+  } else {
+    value_str = value.toString()
+  }
+
+  var query = `{ test(arg1: ${value_str}) { arg1 } }`
+
+  console.log(schema_str);
+  console.log(query);
+
+  return graphql({
+    schema,
+    source: query,
+    rootValue
+  })
+}
+
+BuildTestCase('Float', true, 1.1111111).then(PrintResponse);
+BuildTestCase('Float', true, null).then(PrintResponse);
