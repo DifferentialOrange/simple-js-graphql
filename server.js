@@ -18,7 +18,7 @@ function PrintResponse(response) {
 }
 
 function BuildTestCase(argument_type, argument_nullability,
-                       argument_internal_type, argument_internal_nullability,
+                       argument_inner_type, argument_inner_nullability,
                        value,
                        variable_nullability, variable_inner_type,
                        variable_inner_nullability, default_variable_value,
@@ -32,15 +32,15 @@ function BuildTestCase(argument_type, argument_nullability,
     argument_nullability_str = ``
   }
 
-  var argument_internal_nullability_str
-  if (argument_internal_nullability) {
-    argument_internal_nullability_str = `!`
+  var argument_inner_nullability_str
+  if (argument_inner_nullability) {
+    argument_inner_nullability_str = `!`
   } else {
-    argument_internal_nullability_str = ``
+    argument_inner_nullability_str = ``
   }
 
   if (argument_type == 'list') {
-    argument_str = `[${argument_internal_type}${argument_internal_nullability_str}]${argument_nullability_str}`
+    argument_str = `[${argument_inner_type}${argument_inner_nullability_str}]${argument_nullability_str}`
   } else {
     argument_str = `${argument_type}${argument_nullability_str}`
   }
@@ -59,7 +59,44 @@ function BuildTestCase(argument_type, argument_nullability,
 
   var value_str = JSON.stringify(value)
 
-  var query = `query MyQuery { test(arg1: ${value_str}) { arg1 } }`
+  var query
+  if (variable_nullability != null) {
+    var variable_str
+
+    var variable_nullability_str
+    if (variable_nullability) {
+      variable_nullability_str = `!`
+    } else {
+      variable_nullability_str = ``
+    }
+
+    var variable_inner_nullability_str
+    if (variable_inner_nullability) {
+      variable_inner_nullability_str = `!`
+    } else {
+      variable_inner_nullability_str = ``
+    }
+
+    if (argument_type == 'list') {
+      variable_str = `[${variable_inner_type}${variable_inner_nullability_str}]${variable_nullability_str}`
+    } else {
+      variable_str = `${argument_type}${variable_nullability_str}`
+    }
+
+    var default_str
+    if (default_variable_value != null) {
+      default_str = ` = ${default_variable_value}`
+    }
+
+    var query_v1 = `query MyQuery($var1: ${variable_str}${default_str}) { test(arg1: $var1) { arg1 } }`
+
+    query = JSON.stringify({
+      query_v1,
+      variables: { value_str },
+    })
+  } else {
+    query = `query MyQuery { test(arg1: ${value_str}) { arg1 } }`
+  }
 
   // console.log(schema_str);
   // console.log(query);
@@ -78,110 +115,122 @@ function BuildTestCase(argument_type, argument_nullability,
   });
 }
 
+var k = 'Float'
+var Nullable = false
+var NonNullable = true
+var v = {value: 1.1111111}
+var box = {NULL: null}
+
 describe('test_nonlist_arguments_nullability', function() {
   it('(1) Argument: T -> Value: value - OK', async function() {
-    await BuildTestCase('Float', false, null, null, 1.1111111, null, null, null, null, null);
+    await BuildTestCase(k, Nullable, null, null, v.value, null, null, null, null, null);
   });
 
   it('(2) Argument: T -> Value: nil - OK', async function() {
-    await BuildTestCase('Float', false, null, null, null, null, null, null, null, null);
+    await BuildTestCase(k, Nullable, null, null, null, null, null, null, null, null);
   });
 
   it('(3) Argument: T -> Value: null - OK', async function() {
-    await BuildTestCase('Float', false, null, null, null, null, null, null, null, null);
+    await BuildTestCase(k, Nullable, null, null, box.NULL, null, null, null, null, null);
   });
 
   it('(4) Argument: T! -> Value: value - OK', async function() {
-    await BuildTestCase('Float', true, null, null, 1.1111111, null, null, null, null, null);
+    await BuildTestCase(k, NonNullable, null, null, v.value, null, null, null, null, null);
   });
 
   it('(5) Argument: T! -> Value: nil - FAIL', async function() {
-    await BuildTestCase('Float', true, null, null, null, null, null, null, null, 'Expected value of type "Float!", found null.');
+    await BuildTestCase(k, NonNullable, null, null, null, null, null, null, null, 'Expected value of type "Float!", found null.');
   });
 
   it('(6) Argument: T! -> Value: null - FAIL', async function() {
-    await BuildTestCase('Float', true, null, null, null, null, null, null, null, 'Expected value of type "Float!", found null.');
+    await BuildTestCase(k, NonNullable, null, null, box.NULL, null, null, null, null, 'Expected value of type "Float!", found null.');
   });
 });
 
 describe('test_list_arguments_nullability', function() {
   it('(1) Argument: [T] -> Value: [value(s)] - OK', async function() {
-    await BuildTestCase('list', false, 'Float', false, [1.1111111], null, null, null, null, null);
+    await BuildTestCase('list', Nullable, k, Nullable, [v.value], null, null, null, null, null);
   });
 
   it('(2) Argument: [T] -> Value: [] - OK', async function() {
-    await BuildTestCase('list', false, 'Float', false, [], null, null, null, null, null);
+    await BuildTestCase('list', Nullable, k, Nullable, [], null, null, null, null, null);
   });
 
   it('(3) Argument: [T] -> Value: [null] - OK', async function() {
-    await BuildTestCase('list', false, 'Float', false, [null], null, null, null, null, null);
+    await BuildTestCase('list', Nullable, k, Nullable, [box.NULL], null, null, null, null, null);
   });
 
   it('(4) Argument: [T] -> Value: nil - OK', async function() {
-    await BuildTestCase('list', false, 'Float', false, null, null, null, null, null, null);
+    await BuildTestCase('list', Nullable, k, Nullable, null, null, null, null, null, null);
   });
 
   it('(5) Argument: [T] -> Value: null - OK', async function() {
-    await BuildTestCase('list', false, 'Float', false, null, null, null, null, null, null);
+    await BuildTestCase('list', Nullable, k, Nullable, box.NULL, null, null, null, null, null);
   });
 
   it('(6) Argument: [T!] -> Value: [value(s)] - OK', async function() {
-    await BuildTestCase('list', false, 'Float', true, [1.1111111], null, null, null, null, null);
+    await BuildTestCase('list', Nullable, k, NonNullable, [v.value], null, null, null, null, null);
   });
 
   it('(7) Argument: [T!] -> Value: [] - OK', async function() {
-    await BuildTestCase('list', false, 'Float', true, [], null, null, null, null, null);
+    await BuildTestCase('list', Nullable, k, NonNullable, [], null, null, null, null, null);
   });
 
   it('(8) Argument: [T!] -> Value: [null] - FAIL', async function() {
-    await BuildTestCase('list', false, 'Float', true, [null], null, null, null, null, 'Expected value of type "Float!", found null.');
+    await BuildTestCase('list', Nullable, k, NonNullable, [box.NULL], null, null, null, null, 'Expected value of type "Float!", found null.');
   });
 
   it('(9) Argument: [T!] -> Value: nil - OK', async function() {
-    await BuildTestCase('list', false, 'Float', true, null, null, null, null, null, null);
+    await BuildTestCase('list', Nullable, k, NonNullable, null, null, null, null, null, null);
   });
 
   it('(10) Argument: [T!] -> Value: null - OK', async function() {
-    await BuildTestCase('list', false, 'Float', true, null, null, null, null, null, null);
+    await BuildTestCase('list', Nullable, k, NonNullable, box.NULL, null, null, null, null, null);
   });
 
   it('(11) Argument: [T]! -> Value: [value(s)] - OK', async function() {
-    await BuildTestCase('list', true, 'Float', false, [1.1111111], null, null, null, null, null);
+    await BuildTestCase('list', NonNullable, k, Nullable, [v.value], null, null, null, null, null);
   });
 
   it('(12) Argument: [T]! -> Value: [] - OK', async function() {
-    await BuildTestCase('list', true, 'Float', false, [], null, null, null, null, null);
+    await BuildTestCase('list', NonNullable, k, Nullable, [], null, null, null, null, null);
   });
 
   it('(13) Argument: [T]! -> Value: [null] - OK', async function() {
-    await BuildTestCase('list', true, 'Float', false, [null], null, null, null, null, null);
+    await BuildTestCase('list', NonNullable, k, Nullable, [null], null, null, null, null, null);
   });
 
   it('(14) Argument: [T]! -> Value: nil - FAIL', async function() {
-    await BuildTestCase('list', true, 'Float', false, null, null, null, null, null, 'Expected value of type "[Float]!", found null.');
+    await BuildTestCase('list', NonNullable, k, Nullable, null, null, null, null, null, 'Expected value of type "[Float]!", found null.');
   });
 
   it('(15) Argument: [T]! -> Value: null - FAIL', async function() {
-    await BuildTestCase('list', true, 'Float', false, null, null, null, null, null, 'Expected value of type "[Float]!", found null.');
+    await BuildTestCase('list', NonNullable, k, Nullable, box.NULL, null, null, null, null, 'Expected value of type "[Float]!", found null.');
   });
 
   it('(16) Argument: [T!]! -> Value: [value(s)] - OK', async function() {
-    await BuildTestCase('list', true, 'Float', true, [1.1111111], null, null, null, null, null);
+    await BuildTestCase('list', NonNullable, k, NonNullable, [v.value], null, null, null, null, null);
   });
 
   it('(17) Argument: [T!]! -> Value: [] - OK', async function() {
-    await BuildTestCase('list', true, 'Float', true, [], null, null, null, null, null);
+    await BuildTestCase('list', NonNullable, k, NonNullable, [], null, null, null, null, null);
   });
 
   it('(18) Argument: [T!]! -> Value: [null] - FAIL', async function() {
-    await BuildTestCase('list', true, 'Float', true, [null], null, null, null, null, 'Expected value of type "Float!", found null.');
+    await BuildTestCase('list', NonNullable, k, NonNullable, [box.NULL], null, null, null, null, 'Expected value of type "Float!", found null.');
   });
 
   it('(19) Argument: [T!]! -> Value: nil - FAIL', async function() {
-    await BuildTestCase('list', true, 'Float', true, null, null, null, null, null, 'Expected value of type "[Float!]!", found null.');
+    await BuildTestCase('list', NonNullable, k, NonNullable, null, null, null, null, null, 'Expected value of type "[Float!]!", found null.');
   });
 
   it('(20) Argument: [T!]! -> Value: null - FAIL', async function() {
-    await BuildTestCase('list', true, 'Float', true, null, null, null, null, null, 'Expected value of type "[Float!]!", found null.');
+    await BuildTestCase('list', NonNullable, k, NonNullable, box.NULL, null, null, null, null, 'Expected value of type "[Float!]!", found null.');
   });
 });
+
+// describe('test_nonlist_arguments_with_variables_nullability', function() {
+//   it('(1) Argument: T -> Value: value - OK', async function() {
+//     await BuildTestCase(k, Nullable, null, null, v.value, null, null, null, null, null);
+//   });
+// });
