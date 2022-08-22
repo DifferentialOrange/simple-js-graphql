@@ -3,6 +3,7 @@ var { graphql, buildSchema } = require('graphql');
 
 var rootValue = {
   test: (args) => {
+    // console.log(args)
     return args;
   },
 };
@@ -60,6 +61,7 @@ function BuildTestCase(argument_type, argument_nullability,
   var value_str = JSON.stringify(value)
 
   var query
+  var variables = []
   if (variable_nullability != null) {
     var variable_str
 
@@ -88,29 +90,32 @@ function BuildTestCase(argument_type, argument_nullability,
       default_str = ` = ${default_variable_value}`
     }
 
-    var query_v1 = `query MyQuery($var1: ${variable_str}${default_str}) { test(arg1: $var1) { arg1 } }`
-
-    query = JSON.stringify({
-      query_v1,
-      variables: { value_str },
-    })
+    query = `query MyQuery($var1: ${variable_str}${default_str}) { test(arg1: $var1) { arg1 } }`
+    variables = {var1: value}
   } else {
     query = `query MyQuery { test(arg1: ${value_str}) { arg1 } }`
   }
 
   // console.log(schema_str);
   // console.log(query);
+  // console.log(variables);
 
   return graphql({
     schema,
     source: query,
-    rootValue
+    rootValue,
+    variableValues: variables
   }).then((response) => {
     if (error_msg != null) {
       test.assert.deepEqual(response.errors[0].message, error_msg)
     } else {
       test.assert.equal(response.hasOwnProperty('errors'), false, response.errors)
-      test.assert.deepEqual(response.data.test.arg1, value)
+
+      if ((default_variable_value != null) && (value == null)) {
+        test.assert.deepEqual(response.data.test.arg1, default_variable_value)
+      } else {
+        test.assert.deepEqual(response.data.test.arg1, value)
+      }
     }
   });
 }
@@ -118,7 +123,7 @@ function BuildTestCase(argument_type, argument_nullability,
 var k = 'Float'
 var Nullable = false
 var NonNullable = true
-var v = {value: 1.1111111}
+var v = {value: 1.1111111, default: 0}
 var box = {NULL: null}
 var nil = null
 
@@ -230,8 +235,8 @@ describe('test_list_arguments_nullability', function() {
   });
 });
 
-// describe('test_nonlist_arguments_with_variables_nullability', function() {
-//   it('(1) Argument: T -> Value: value - OK', async function() {
-//     await BuildTestCase(k, Nullable, nil, nil, v.value, Nullable, nil, nil, v.default, nil);
-//   });
-// });
+describe('test_nonlist_arguments_with_variables_nullability', function() {
+  it('(1) Argument: T -> Value: value - OK', async function() {
+    await BuildTestCase(k, Nullable, nil, nil, v.value, Nullable, nil, nil, v.default, nil);
+  });
+});
