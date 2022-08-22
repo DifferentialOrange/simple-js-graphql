@@ -1,4 +1,4 @@
-var assert = require('assert');
+var test = require('unit.js');
 var { graphql, buildSchema } = require('graphql');
 
 var rootValue = {
@@ -17,13 +17,29 @@ function PrintResponse(response) {
   }
 }
 
-function BuildTestCase(argument_type, argument_nullability, value, error_msg) {
+function BuildTestCase(argument_type, argument_nullability,
+                       argument_internal_type, argument_internal_nullability,
+                       value, error_msg) {
   var argument_str
 
+  var argument_nullability_str
   if (argument_nullability) {
-    argument_str = `${argument_type}!`
+    argument_nullability_str = `!`
   } else {
-    argument_str = argument_type
+    argument_nullability_str = ``
+  }
+
+  var argument_internal_nullability_str
+  if (argument_internal_nullability) {
+    argument_internal_nullability_str = `!`
+  } else {
+    argument_internal_nullability_str = ``
+  }
+
+  if (argument_type == 'list') {
+    argument_str = `[${argument_internal_type}${argument_internal_nullability_str}]${argument_nullability_str}`
+  } else {
+    argument_str = `${argument_type}${argument_nullability_str}`
   }
 
   var schema_str = `
@@ -56,14 +72,27 @@ function BuildTestCase(argument_type, argument_nullability, value, error_msg) {
     rootValue
   }).then((response) => {
     if (error_msg != null) {
-      assert.equal(response.errors[0].message, error_msg)
+      test.assert.deepEqual(response.errors[0].message, error_msg)
     } else {
-      assert.equal(response.data.test.arg1, value)
+      test.assert.deepEqual(response.data.test.arg1, value)
     }
   });
 
   console.log('OK');
 }
 
-BuildTestCase('Float', true, 1.1111111, null);
-BuildTestCase('Float', true, null, 'Expected value of type "Float!", found null.');
+console.log('test_nonlist_arguments_nullability');
+// (1) Argument: T -> Value: value - OK
+BuildTestCase('Float', false, null, null, 1.1111111, null);
+// (2) Argument: T -> Value: nil - OK
+// (3) Argument: T -> Value: null - OK
+BuildTestCase('Float', false, null, null, null, null);
+// (4) Argument: T! -> Value: value - OK
+BuildTestCase('Float', true, null, null, 1.1111111, null);
+// (5) Argument: T! -> Value: nil - FAIL
+// (6) Argument: T! -> Value: null - FAIL
+BuildTestCase('Float', true, null, null, null, 'Expected value of type "Float!", found null.');
+
+console.log('test_nonlist_arguments_nullability');
+// (1) Argument: [T] -> Value: [value(s)] - OK
+BuildTestCase('list', false, 'Float', false, [1.1111111], null);

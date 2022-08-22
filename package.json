@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "graphql": "^15.4.0"
+    "graphql": "^15.4.0",
+    "unit.js": "^2.1.1"
   }
 }
