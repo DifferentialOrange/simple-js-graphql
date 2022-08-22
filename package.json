@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "graphql": "^15.4.0",
+    "mocha": "^8.4.0",
     "unit.js": "^2.1.1"
   }
 }

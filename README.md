@@ -1,3 +1,3 @@
 ```bash
-node server.js
+./node_modules/mocha/bin/mocha ./server.js
 ```
