@@ -1,14 +1,5 @@
+var assert = require('assert');
 var { graphql, buildSchema } = require('graphql');
-
-var schema = buildSchema(`
-  type result {
-    arg1: Float!
-  }
-
-  type Query {
-    test(arg1: Float!): result
-  }
-`);
 
 var rootValue = {
   test: (args) => {
@@ -26,7 +17,7 @@ function PrintResponse(response) {
   }
 }
 
-function BuildTestCase(argument_type, argument_nullability, value) {
+function BuildTestCase(argument_type, argument_nullability, value, error_msg) {
   var argument_str
 
   if (argument_nullability) {
@@ -56,15 +47,23 @@ function BuildTestCase(argument_type, argument_nullability, value) {
 
   var query = `{ test(arg1: ${value_str}) { arg1 } }`
 
-  console.log(schema_str);
-  console.log(query);
+  // console.log(schema_str);
+  // console.log(query);
 
-  return graphql({
+  graphql({
     schema,
     source: query,
     rootValue
-  })
+  }).then((response) => {
+    if (error_msg != null) {
+      assert.equal(response.errors[0].message, error_msg)
+    } else {
+      assert.equal(response.data.test.arg1, value)
+    }
+  });
+
+  console.log('OK');
 }
 
-BuildTestCase('Float', true, 1.1111111).then(PrintResponse);
-BuildTestCase('Float', true, null).then(PrintResponse);
+BuildTestCase('Float', true, 1.1111111, null);
+BuildTestCase('Float', true, null, 'Expected value of type "Float!", found null.');
