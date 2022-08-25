@@ -199,6 +199,7 @@ var rootValue = {
     },
 };
 
+// == Build Lua GraphQL objects ==
 
 var test_header = `
 local json = require('json')
@@ -389,6 +390,22 @@ end
 `
 console.log(test_header)
 
+function to_Lua(v) {
+    if (v == null) {
+        return `nil`
+    }
+
+    return v
+}
+
+function to_Lua_String(v) {
+    if (v == null) {
+        return `nil`
+    }
+
+    return `'${v}'`
+}
+
 function build_test_case(response, suite_name, i,
                          argument_type, argument_nullability,
                          argument_inner_type, argument_inner_nullability, 
@@ -397,86 +414,38 @@ function build_test_case(response, suite_name, i,
                          variable_inner_type, variable_inner_nullability, 
                          variable_value, variable_default,
                          query) {
-    var expected_data
+    let expected_data
 
     if (response.hasOwnProperty('data')) {
-        var _expected_data = JSON.stringify(response.data)
+        let _expected_data = JSON.stringify(response.data)
         expected_data = `'${_expected_data}'`
     } else {
         expected_data = `nil`
     }
 
-    var expected_error
+    let expected_error
 
     if (response.hasOwnProperty('errors')) {
-        var _expected_error = JSON.stringify(response.errors[0].message)
+        let _expected_error = JSON.stringify(response.errors[0].message)
         expected_error = JS_to_Lua_error_map_func(`${_expected_error}`)
     } else {
         expected_error = `nil`
     }
 
-    var Lua_argument_type = `'${argument_type}'`
-    var Lua_argument_nullability = argument_nullability
+    let Lua_argument_type = to_Lua_String(argument_type)
+    let Lua_argument_nullability = to_Lua(argument_nullability)
+    let Lua_argument_inner_type = to_Lua_String(argument_inner_type)
+    let Lua_argument_inner_nullability = to_Lua(argument_inner_nullability)
 
-    var Lua_argument_inner_type
-    if (argument_inner_type !== null) {
-        Lua_argument_inner_type = `'${argument_inner_type}'`
-    } else {
-        Lua_argument_inner_type = `nil`
-    }
+    let Lua_variable_type = to_Lua_String(variable_type)
+    let Lua_variable_nullability = to_Lua(variable_nullability)
+    let Lua_variable_inner_type = to_Lua_String(variable_inner_type)
+    let Lua_variable_inner_nullability = to_Lua(variable_inner_nullability)
 
-    var Lua_argument_inner_nullability
-    if (argument_inner_nullability !== null) {
-        Lua_argument_inner_nullability = argument_inner_nullability
-    } else {
-        Lua_argument_inner_nullability = `nil`
-    }
 
-    var Lua_variable_type
-    if (variable_type !== null) {
-        Lua_variable_type = `'${variable_type}'`
-    } else {
-        Lua_variable_type = `nil`
-    }
-
-    var Lua_variable_nullability
-    if (variable_nullability !== null) {
-        Lua_variable_nullability = `'${variable_nullability}'`
-    } else {
-        Lua_variable_nullability = `nil`
-    }
-
-    var Lua_variable_inner_type
-    if (variable_inner_type !== null) {
-        Lua_variable_inner_type = `'${variable_inner_type}'`
-    } else {
-        Lua_variable_inner_type = `nil`
-    }
-
-    var Lua_variable_inner_nullability
-    if (variable_inner_nullability !== null) {
-        Lua_variable_inner_nullability = `'${variable_inner_nullability}'`
-    } else {
-        Lua_variable_inner_nullability = `nil`
-    }
-
-    let variables = `nil`
-
-    let Lua_variable_default = `nil`
-    if (variable_default !== null) {
-        Lua_variable_default = variable_default
-    }
-
-    let Lua_argument_value = `nil`
-    if (argument_value !== null) {
-        Lua_argument_value = argument_value
-    } 
-
-    let Lua_variable_value = `nil`
-    if (variable_default !== null) {
-        Lua_variable_value = variable_value
-    } 
-
+    let Lua_variable_default = to_Lua(variable_default)
+    let Lua_argument_value = to_Lua(argument_value)
+    let Lua_variable_value = to_Lua(variable_value)
 
     return `
 g.test_${suite_name}_${argument_type}_${i} = function(g) -- luacheck: no unused args
