@@ -736,7 +736,7 @@ build_suite('nonlist_argument_with_variables_nullability',
 
 // == List argument with variable nullability ==
 
-build_suite('nonlist_argument_with_variables_nullability',
+build_suite('list_argument_with_variables_nullability',
             'list', [Nullable, NonNullable],
             Float, [Nullable, NonNullable],
             [],
