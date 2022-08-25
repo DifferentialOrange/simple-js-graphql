@@ -5,6 +5,7 @@ var box = {NULL: 'box.NULL'}
 
 var Float = 'float'
 var value = 1.11111
+var default_value = 0
 var Nullable = 'Nullable'
 var NonNullable = 'NonNullable'
 
@@ -387,7 +388,6 @@ local function build_schema(argument_type, argument_nullability,
         }
     }
 end
-
 `
 console.log(test_header)
 
@@ -516,6 +516,7 @@ async function build_suite(suite_name,
                                               variable_type, variable_nullability,
                                               variable_inner_type, variable_inner_nullability,
                                               variable_value, variable_default)
+
                     let query = build_query(argument_type, argument_nullability,
                                             argument_inner_type, argument_inner_nullability, 
                                             argument_value,
@@ -555,6 +556,7 @@ async function build_suite(suite_name,
                                                       variable_type, variable_nullability,
                                                       variable_inner_type, variable_inner_nullability, 
                                                       variable_value, variable_default)
+
                             let query = build_query(argument_type, argument_nullability,
                                                     argument_inner_type, argument_inner_nullability, 
                                                     argument_value,
@@ -596,46 +598,100 @@ async function build_suite(suite_name,
     }
 
     // List case
-    argument_nullabilities.forEach( async function (argument_nullability) {
-        argument_inner_nullabilities.forEach( async function (argument_inner_nullability) {
-            argument_values.forEach( async function (argument_value)  {
-                let variable_nullability = null
-                let variable_inner_nullability = null
-                let variable_value = null
-                let variable_default = null
+    if (variable_type == null) {
+        argument_nullabilities.forEach( async function (argument_nullability) {
+            argument_inner_nullabilities.forEach( async function (argument_inner_nullability) {
+                argument_values.forEach( async function (argument_value)  {
+                    let variable_nullability = null
+                    let variable_inner_nullability = null
+                    let variable_value = null
+                    let variable_default = null
 
-                let schema = build_schema(argument_type, argument_nullability,
-                                          argument_inner_type, argument_inner_nullability, 
-                                          argument_value,
-                                          variable_type, variable_nullability,
-                                          variable_inner_type, variable_inner_nullability, 
-                                          variable_value, variable_default)
-                let query = build_query(argument_type, argument_nullability,
-                                        argument_inner_type, argument_inner_nullability, 
-                                        argument_value,
-                                        variable_type, variable_nullability,
-                                        variable_inner_type, variable_inner_nullability, 
-                                        variable_value, variable_default)
-                
-                await graphql({
-                    schema,
-                    source: query,
-                    rootValue,
-                }).then((response) => {
-                    i = i + 1
-                    console.log(build_test_case(response, suite_name, i,
-                                                argument_type, argument_nullability,
-                                                argument_inner_type, argument_inner_nullability, 
-                                                argument_value,
-                                                variable_type, variable_nullability,
-                                                variable_inner_type, variable_inner_nullability, 
-                                                variable_value, variable_default,
-                                                query))
+                    let schema = build_schema(argument_type, argument_nullability,
+                                              argument_inner_type, argument_inner_nullability, 
+                                              argument_value,
+                                              variable_type, variable_nullability,
+                                              variable_inner_type, variable_inner_nullability, 
+                                              variable_value, variable_default)
+
+                    let query = build_query(argument_type, argument_nullability,
+                                            argument_inner_type, argument_inner_nullability, 
+                                            argument_value,
+                                            variable_type, variable_nullability,
+                                            variable_inner_type, variable_inner_nullability, 
+                                            variable_value, variable_default)
+                    
+                    await graphql({
+                        schema,
+                        source: query,
+                        rootValue,
+                    }).then((response) => {
+                        i = i + 1
+                        console.log(build_test_case(response, suite_name, i,
+                                                    argument_type, argument_nullability,
+                                                    argument_inner_type, argument_inner_nullability, 
+                                                    argument_value,
+                                                    variable_type, variable_nullability,
+                                                    variable_inner_type, variable_inner_nullability, 
+                                                    variable_value, variable_default,
+                                                    query))
+                    })
                 })
             })
         })
-    })
-    // TO DO: list with variables
+    } else {
+        argument_nullabilities.forEach( async function (argument_nullability) {
+            argument_inner_nullabilities.forEach( async function (argument_inner_nullability) {
+                variable_nullabilities.forEach( async function (variable_nullability) {
+                    variable_inner_nullabilities.forEach( async function (variable_inner_nullability) {
+                        variable_values.forEach( async function (variable_value)  {
+                            variable_defaults.forEach( async function (variable_default)  {
+                                let argument_value = null
+
+                                let schema = build_schema(argument_type, argument_nullability,
+                                                          argument_inner_type, argument_inner_nullability, 
+                                                          argument_value,
+                                                          variable_type, variable_nullability,
+                                                          variable_inner_type, variable_inner_nullability, 
+                                                          variable_value, variable_default)
+
+                                let query = build_query(argument_type, argument_nullability,
+                                                        argument_inner_type, argument_inner_nullability, 
+                                                        argument_value,
+                                                        variable_type, variable_nullability,
+                                                        variable_inner_type, variable_inner_nullability, 
+                                                        variable_value, variable_default)
+
+                                let variables = build_variables(argument_type, argument_nullability,
+                                                                argument_inner_type, argument_inner_nullability, 
+                                                                argument_value,
+                                                                variable_type, variable_nullability,
+                                                                variable_inner_type, variable_inner_nullability, 
+                                                                variable_value, variable_default)
+                                    
+                                await graphql({
+                                    schema,
+                                    source: query,
+                                    rootValue,
+                                    variableValues: variables
+                                }).then((response) => {
+                                    i = i + 1
+                                    console.log(build_test_case(response, suite_name, i,
+                                                                argument_type, argument_nullability,
+                                                                argument_inner_type, argument_inner_nullability, 
+                                                                argument_value,
+                                                                variable_type, variable_nullability,
+                                                                variable_inner_type, variable_inner_nullability, 
+                                                                variable_value, variable_default,
+                                                                query))
+                                })
+                            })
+                        })
+                    })
+                })
+            })
+        })
+    }
 }
 
 // == Non-list argument nullability ==
@@ -676,4 +732,15 @@ build_suite('nonlist_argument_with_variables_nullability',
             Float, [Nullable, NonNullable],
             null, [],
             [nil, box.NULL, value],
-            [nil, box.NULL, value])
+            [nil, box.NULL, default_value])
+
+// == List argument with variable nullability ==
+
+build_suite('nonlist_argument_with_variables_nullability',
+            'list', [Nullable, NonNullable],
+            Float, [Nullable, NonNullable],
+            [],
+            'list', [Nullable, NonNullable],
+            Float, [Nullable, NonNullable],
+            [nil, box.NULL, [nil], [box.NULL], [value]],
+            [nil, box.NULL, [nil], [box.NULL], [default_value]])
