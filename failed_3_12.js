@@ -8,7 +8,7 @@ var rootValue = {
 }
 
 function PrintResponse(response) {
-  console.log(JSON.parse(JSON.stringify(response.data)));
+  console.log(JSON.parse(JSON.stringify(response.errors[0])));
   console.log(JSON.parse(JSON.stringify(response.errors)));
 }
 
@@ -22,11 +22,11 @@ var schema = buildSchema(`
   }
 `)
 
-var query = `query MyQuery($var1: Float! = 0) { test(arg1: $var1) { arg1 } }`
+var query = `query MyQuery($var1: Float! = null)  { test(arg1: $var1)  { arg1 } }`
 
 graphql({
   schema,
   source: query,
   rootValue,
-  variableValues: { var1: 1.12}
+  variableValues: { var1: 1.12 }
 }).then(PrintResponse)

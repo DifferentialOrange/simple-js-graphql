@@ -18,15 +18,15 @@ var schema = buildSchema(`
   }
 
   type Query {
-    test(arg1: Float): result
+    test(arg1: Float): result!
   }
 `)
 
-var query = `query MyQuery($var1: Float! = 0) { test(arg1: $var1) { arg1 } }`
+var query = `query MyQuery($var1: Float) { test(arg1: $var1) { arg1 } }`
 
 graphql({
   schema,
   source: query,
-  rootValue,
-  variableValues: { var1: 1.12}
+  rootValue
+  // variableValues: { var1: 1.12}
 }).then(PrintResponse)
