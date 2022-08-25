@@ -46,15 +46,36 @@ function JS_to_Lua_error_map_func(s) {
         return `"Expected non-null for \\\"NonNull(List(NonNull(${found.groups.type})))\\\", got null"`
     }
 
+    const regex5 = /^"Variable \\"\$var1\\" of required type \\\"(?<type>[a-zA-Z]+)!\\\" was not provided\."$/
+    found = s.match(regex5)
+
+    if (found) {
+        return `"Variable \\\"var1\\\" expected to be non-null"`
+    }
+
+    const regex6 = /^"Variable \\"\$var1\\" of non-null type \\\"(?<type>[a-zA-Z]+)!\\\" must not be null\."$/
+    found = s.match(regex6)
+
+    if (found) {
+        return `"Variable \\\"var1\\\" expected to be non-null"`
+    }
+"Variable \"$var1\" of type \"Float\" used in position expecting type \"Float!\"."
+    const regex7 = /^"Variable \\"\$var1\\" of type \\\"(?<type1>[a-zA-Z]+)\\\" used in position expecting type \\\"(?<type2>[a-zA-Z]+)!\\\"\."$/
+    found = s.match(regex7)
+
+    if (found) {
+        return `"Variable \\\"var1\\\" type mismatch: the variable type \\\"${found.groups.type1}\\\" is not compatible with the argument type \\\"NonNull(${found.groups.type2})\\\""`
+    }
+
     return s
 }
 
 function build_schema(argument_type, argument_nullability,
-                      argument_inner_type, argument_inner_nullability, 
-                      value,
-                      variable_type, variable_nullability,
-                      variable_inner_type, variable_inner_nullability, 
-                      variable_default) {
+                         argument_inner_type, argument_inner_nullability, 
+                         argument_value,
+                         variable_type, variable_nullability,
+                         variable_inner_type, variable_inner_nullability, 
+                         variable_value, variable_default) {
     var js_argument_type = Lua_to_JS_type_map[argument_type]
     var js_argument_inner_type = Lua_to_JS_type_map[argument_inner_type]
 
@@ -89,11 +110,11 @@ function build_schema(argument_type, argument_nullability,
 };
 
 function build_query(argument_type, argument_nullability,
-                     argument_inner_type, argument_inner_nullability, 
-                     value,
-                     variable_type, variable_nullability,
-                     variable_inner_type, variable_inner_nullability, 
-                     variable_default) {
+                         argument_inner_type, argument_inner_nullability, 
+                         argument_value,
+                         variable_type, variable_nullability,
+                         variable_inner_type, variable_inner_nullability, 
+                         variable_value, variable_default) {
     let js_argument_type = Lua_to_JS_type_map[argument_type]
     let js_argument_inner_type = Lua_to_JS_type_map[argument_inner_type]
     let js_variable_type = Lua_to_JS_type_map[variable_type]
@@ -122,7 +143,7 @@ function build_query(argument_type, argument_nullability,
         if (js_variable_type === 'list') {
             if (variable_default[0] === nil) {
                 default_str = ` = []`
-            } else if (value[0] === box.NULL) {
+            } else if (variable_default[0] === box.NULL) {
                 default_str = ` = [null]`
             } else {
                 var js_default = JSON.stringify(variable_default)
@@ -143,20 +164,20 @@ function build_query(argument_type, argument_nullability,
     }
 
     // No variables case
-    if ((value === nil) || (value === box.NULL)) {
+    if ((argument_value === nil) || (argument_value === box.NULL)) {
         return `query MyQuery { test(arg1: null) { arg1 } }`
     } else {
         if (js_argument_type === 'list') {
-            if (value[0] === nil) {
+            if (argument_value[0] === nil) {
                 return `query MyQuery { test(arg1: []) { arg1 } }`
-            } else if (value[0] === box.NULL) {
+            } else if (argument_value[0] === box.NULL) {
                 return `query MyQuery { test(arg1: [null]) { arg1 } }`
             } else {
-                var js_value = JSON.stringify(value)
+                var js_value = JSON.stringify(argument_value)
                 return `query MyQuery { test(arg1: ${js_value}) { arg1 } }`
             }
         }
-        return `query MyQuery { test(arg1: ${value}) { arg1 } }`
+        return `query MyQuery { test(arg1: ${argument_value}) { arg1 } }`
     }
 };
 
@@ -179,18 +200,6 @@ local helpers = require('test.helpers')
 -- constants
 local Nullable = true
 local NonNullable = false
-
-local ARGUMENTS = 1
-local ARGUMENT_TYPE = 1
-local ARGUMENT_NULLABILITY = 2
-local ARGUMENT_INNER_TYPE = 3
-local ARGUMENT_INNER_NULLABILITY = 4
-local INPUT_VALUE = 5
-local VARIABLE_NULLABILITY = 6
-local VARIABLE_INNER_TYPE = 7
-local VARIABLE_INNER_NULLABILITY = 8
-local VARIABLE_DEFAULT = 9
-local EXPECTED_ERROR = 2
 
 local my_enum = types.enum({
     name = 'MyEnum',
@@ -327,19 +336,12 @@ local graphql_types = {
     },
 }
 
-local function is_box_null(value)
-    if value and value == nil then
-        return true
-    end
-    return false
-end
-
 local function build_schema(argument_type, argument_nullability,
                             argument_inner_type, argument_inner_nullability,
-                            value,
+                            argument_value,
                             variable_type, variable_nullability,
                             variable_inner_type, variable_inner_nullability,
-                            variable_default)
+                            variable_value, variable_default) -- luacheck: no unused args
     local type
     if argument_type == 'list' then
         if argument_inner_nullability == NonNullable then
@@ -378,10 +380,10 @@ console.log(test_header)
 function build_test_case(response, suite_name, i,
                          argument_type, argument_nullability,
                          argument_inner_type, argument_inner_nullability, 
-                         value,
+                         argument_value,
                          variable_type, variable_nullability,
                          variable_inner_type, variable_inner_nullability, 
-                         variable_default,
+                         variable_value, variable_default,
                          query) {
     var expected_data
 
@@ -451,35 +453,42 @@ function build_test_case(response, suite_name, i,
     let Lua_variable_default = `nil`
     if (variable_default !== null) {
         Lua_variable_default = variable_default
+    }
+
+    let Lua_argument_value = `nil`
+    if (argument_value !== null) {
+        Lua_argument_value = argument_value
     } 
 
+    let Lua_variable_value = `nil`
+    if (variable_default !== null) {
+        Lua_variable_value = variable_value
+    } 
+
+
     return `
-g.test_${suite_name}_${argument_type}_${i} = function()
+g.test_${suite_name}_${argument_type}_${i} = function(g) -- luacheck: no unused args
     local argument_type = ${Lua_argument_type}
     local argument_nullability = ${Lua_argument_nullability}
     local argument_inner_type = ${Lua_argument_inner_type}
     local argument_inner_nullability = ${Lua_argument_inner_nullability}
-    local value = ${value}
+    local argument_value = ${Lua_argument_value}
     local variable_type = ${Lua_variable_type}
     local variable_nullability = ${Lua_variable_nullability}
     local variable_inner_type = ${Lua_variable_inner_type}
     local variable_inner_nullability = ${Lua_variable_inner_nullability}
     local variable_default = ${Lua_variable_default}
+    local variable_value = ${Lua_variable_value}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "${query}"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -498,17 +507,17 @@ end`
 
 function build_variables(argument_type, argument_nullability,
                          argument_inner_type, argument_inner_nullability, 
-                         value,
+                         argument_value,
                          variable_type, variable_nullability,
                          variable_inner_type, variable_inner_nullability, 
-                         variable_default) {
+                         variable_value, variable_default) {
     let variables = [];
 
-    if (value !== nil) {
-        if (value === box.NULL) {
+    if (variable_value !== nil) {
+        if (variable_value === box.NULL) {
             variables = {var1: null}
         } else {
-            variables = {var1: value}
+            variables = {var1: variable_value}
         }
     }
 
@@ -518,9 +527,10 @@ function build_variables(argument_type, argument_nullability,
 async function build_suite(suite_name,
                      argument_type, argument_nullabilities,
                      argument_inner_type, argument_inner_nullabilities,
-                     values, // argument values in case of no variable and variable value if it is used
+                     argument_values,
                      variable_type, variable_nullabilities,
                      variable_inner_type, variable_inner_nullabilities,
+                     variable_values,
                      variable_defaults) {
     let i = 0
 
@@ -532,22 +542,23 @@ async function build_suite(suite_name,
         if (variable_type == null) {
             // No variables case
             let variable_nullability = null
+            let variable_value = null
             let variable_default = null
 
             argument_nullabilities.forEach( async function (argument_nullability) {
-                values.forEach( async function (value)  {
+                argument_values.forEach( async function (argument_value)  {
                     let schema = build_schema(argument_type, argument_nullability,
-                                              argument_inner_type, argument_inner_nullability, 
-                                              value,
+                                              argument_inner_type, argument_inner_nullability,
+                                              argument_value,
                                               variable_type, variable_nullability,
-                                              variable_inner_type, variable_inner_nullability, 
-                                              variable_default)
+                                              variable_inner_type, variable_inner_nullability,
+                                              variable_value, variable_default)
                     let query = build_query(argument_type, argument_nullability,
                                             argument_inner_type, argument_inner_nullability, 
-                                            value,
+                                            argument_value,
                                             variable_type, variable_nullability,
                                             variable_inner_type, variable_inner_nullability, 
-                                            variable_default)
+                                            variable_value, variable_default)
                     
 
                     await graphql({
@@ -559,10 +570,10 @@ async function build_suite(suite_name,
                         console.log(build_test_case(response, suite_name, i,
                                                argument_type, argument_nullability,
                                                argument_inner_type, argument_inner_nullability, 
-                                               value,
+                                               argument_value,
                                                variable_type, variable_nullability,
                                                variable_inner_type, variable_inner_nullability, 
-                                               variable_default,
+                                               variable_value, variable_default,
                                                query))
                     })
                 })
@@ -570,27 +581,29 @@ async function build_suite(suite_name,
         } else {
             argument_nullabilities.forEach( async function (argument_nullability) {
                 variable_nullabilities.forEach( async function (variable_nullability)  {
-                    values.forEach( async function (value)  {
+                    variable_values.forEach( async function (variable_value)  {
                         variable_defaults.forEach( async function (variable_default)  {
+                            let argument_value = null
+
                             let schema = build_schema(argument_type, argument_nullability,
                                                       argument_inner_type, argument_inner_nullability, 
-                                                      value,
+                                                      argument_value,
                                                       variable_type, variable_nullability,
                                                       variable_inner_type, variable_inner_nullability, 
-                                                      variable_default)
+                                                      variable_value, variable_default)
                             let query = build_query(argument_type, argument_nullability,
                                                     argument_inner_type, argument_inner_nullability, 
-                                                    value,
+                                                    argument_value,
                                                     variable_type, variable_nullability,
                                                     variable_inner_type, variable_inner_nullability, 
-                                                    variable_default)
+                                                    variable_value, variable_default)
 
                             let variables = build_variables(argument_type, argument_nullability,
                                                             argument_inner_type, argument_inner_nullability, 
-                                                            value,
+                                                            argument_value,
                                                             variable_type, variable_nullability,
                                                             variable_inner_type, variable_inner_nullability, 
-                                                            variable_default)
+                                                            variable_value, variable_default)
                             
 
                             await graphql({
@@ -603,10 +616,10 @@ async function build_suite(suite_name,
                                 console.log(build_test_case(response, suite_name, i,
                                                             argument_type, argument_nullability,
                                                             argument_inner_type, argument_inner_nullability, 
-                                                            value,
+                                                            argument_value,
                                                             variable_type, variable_nullability,
                                                             variable_inner_type, variable_inner_nullability, 
-                                                            variable_default,
+                                                            variable_value, variable_default,
                                                             query))
                             })
                         })
@@ -621,23 +634,24 @@ async function build_suite(suite_name,
     // List case
     argument_nullabilities.forEach( async function (argument_nullability) {
         argument_inner_nullabilities.forEach( async function (argument_inner_nullability) {
-            values.forEach( async function (value)  {
+            argument_values.forEach( async function (argument_value)  {
                 let variable_nullability = null
                 let variable_inner_nullability = null
+                let variable_value = null
                 let variable_default = null
 
                 let schema = build_schema(argument_type, argument_nullability,
                                           argument_inner_type, argument_inner_nullability, 
-                                          value,
+                                          argument_value,
                                           variable_type, variable_nullability,
                                           variable_inner_type, variable_inner_nullability, 
-                                          variable_default)
+                                          variable_value, variable_default)
                 let query = build_query(argument_type, argument_nullability,
                                         argument_inner_type, argument_inner_nullability, 
-                                        value,
+                                        argument_value,
                                         variable_type, variable_nullability,
                                         variable_inner_type, variable_inner_nullability, 
-                                        variable_default)
+                                        variable_value, variable_default)
                 
                 await graphql({
                     schema,
@@ -648,10 +662,10 @@ async function build_suite(suite_name,
                     console.log(build_test_case(response, suite_name, i,
                                                 argument_type, argument_nullability,
                                                 argument_inner_type, argument_inner_nullability, 
-                                                value,
+                                                argument_value,
                                                 variable_type, variable_nullability,
                                                 variable_inner_type, variable_inner_nullability, 
-                                                variable_default,
+                                                variable_value, variable_default,
                                                 query))
                 })
             })
@@ -672,6 +686,7 @@ build_suite('nonlist_argument_nullability',
             [nil, box.NULL, value],
             null, [],
             null, [],
+            [],
             [])
 
 // == List argument nullability ==
@@ -684,6 +699,7 @@ build_suite('list_argument_nullability',
             [nil, box.NULL, [nil], [box.NULL], [value]],
             null, [],
             null, [],
+            [],
             [])
 
 // == Non-list argument with variable nullability ==
@@ -691,7 +707,8 @@ build_suite('list_argument_nullability',
 build_suite('nonlist_argument_with_variables_nullability',
             Float, [Nullable, NonNullable],
             null, [],
-            [nil, box.NULL, value],
+            [],
             Float, [Nullable, NonNullable],
             null, [],
-            [nil, box.NULL, value],)
+            [nil, box.NULL, value],
+            [nil, box.NULL, value])

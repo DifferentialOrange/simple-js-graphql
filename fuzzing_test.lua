@@ -11,18 +11,6 @@ local helpers = require('test.helpers')
 local Nullable = true
 local NonNullable = false
 
-local ARGUMENTS = 1
-local ARGUMENT_TYPE = 1
-local ARGUMENT_NULLABILITY = 2
-local ARGUMENT_INNER_TYPE = 3
-local ARGUMENT_INNER_NULLABILITY = 4
-local INPUT_VALUE = 5
-local VARIABLE_NULLABILITY = 6
-local VARIABLE_INNER_TYPE = 7
-local VARIABLE_INNER_NULLABILITY = 8
-local VARIABLE_DEFAULT = 9
-local EXPECTED_ERROR = 2
-
 local my_enum = types.enum({
     name = 'MyEnum',
     values = {
@@ -158,19 +146,12 @@ local graphql_types = {
     },
 }
 
-local function is_box_null(value)
-    if value and value == nil then
-        return true
-    end
-    return false
-end
-
 local function build_schema(argument_type, argument_nullability,
                             argument_inner_type, argument_inner_nullability,
-                            value,
+                            argument_value,
                             variable_type, variable_nullability,
                             variable_inner_type, variable_inner_nullability,
-                            variable_default)
+                            variable_value, variable_default) -- luacheck: no unused args
     local type
     if argument_type == 'list' then
         if argument_inner_nullability == NonNullable then
@@ -205,32 +186,28 @@ end
 
 
 
-g.test_nonlist_argument_nullability_float_1 = function()
+g.test_nonlist_argument_nullability_float_1 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = Nullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = nil
+    local argument_value = nil
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery { test(arg1: null) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -246,32 +223,28 @@ g.test_nonlist_argument_nullability_float_1 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_nullability_float_2 = function()
+g.test_nonlist_argument_nullability_float_2 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = Nullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = box.NULL
+    local argument_value = box.NULL
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery { test(arg1: null) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -287,32 +260,28 @@ g.test_nonlist_argument_nullability_float_2 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_nullability_float_3 = function()
+g.test_nonlist_argument_nullability_float_3 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = Nullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = 1.11111
+    local argument_value = 1.11111
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery { test(arg1: 1.11111) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -328,32 +297,28 @@ g.test_nonlist_argument_nullability_float_3 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_nullability_float_4 = function()
+g.test_nonlist_argument_nullability_float_4 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = NonNullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = nil
+    local argument_value = nil
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery { test(arg1: null) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -369,32 +334,28 @@ g.test_nonlist_argument_nullability_float_4 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_nullability_float_5 = function()
+g.test_nonlist_argument_nullability_float_5 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = NonNullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = box.NULL
+    local argument_value = box.NULL
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery { test(arg1: null) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -410,32 +371,28 @@ g.test_nonlist_argument_nullability_float_5 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_nullability_float_6 = function()
+g.test_nonlist_argument_nullability_float_6 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = NonNullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = 1.11111
+    local argument_value = 1.11111
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery { test(arg1: 1.11111) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -451,32 +408,28 @@ g.test_nonlist_argument_nullability_float_6 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_list_argument_nullability_list_1 = function()
+g.test_list_argument_nullability_list_1 = function(g) -- luacheck: no unused args
     local argument_type = 'list'
     local argument_nullability = Nullable
     local argument_inner_type = 'float'
     local argument_inner_nullability = Nullable
-    local value = nil
+    local argument_value = nil
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery { test(arg1: null) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -492,32 +445,28 @@ g.test_list_argument_nullability_list_1 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_list_argument_nullability_list_2 = function()
+g.test_list_argument_nullability_list_2 = function(g) -- luacheck: no unused args
     local argument_type = 'list'
     local argument_nullability = Nullable
     local argument_inner_type = 'float'
     local argument_inner_nullability = Nullable
-    local value = box.NULL
+    local argument_value = box.NULL
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery { test(arg1: null) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -533,32 +482,28 @@ g.test_list_argument_nullability_list_2 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_list_argument_nullability_list_3 = function()
+g.test_list_argument_nullability_list_3 = function(g) -- luacheck: no unused args
     local argument_type = 'list'
     local argument_nullability = Nullable
     local argument_inner_type = 'float'
     local argument_inner_nullability = Nullable
-    local value = nil
+    local argument_value = nil
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery { test(arg1: []) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -574,32 +519,28 @@ g.test_list_argument_nullability_list_3 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_list_argument_nullability_list_4 = function()
+g.test_list_argument_nullability_list_4 = function(g) -- luacheck: no unused args
     local argument_type = 'list'
     local argument_nullability = Nullable
     local argument_inner_type = 'float'
     local argument_inner_nullability = Nullable
-    local value = box.NULL
+    local argument_value = box.NULL
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery { test(arg1: [null]) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -615,32 +556,28 @@ g.test_list_argument_nullability_list_4 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_list_argument_nullability_list_5 = function()
+g.test_list_argument_nullability_list_5 = function(g) -- luacheck: no unused args
     local argument_type = 'list'
     local argument_nullability = Nullable
     local argument_inner_type = 'float'
     local argument_inner_nullability = Nullable
-    local value = 1.11111
+    local argument_value = 1.11111
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery { test(arg1: [1.11111]) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -656,32 +593,28 @@ g.test_list_argument_nullability_list_5 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_list_argument_nullability_list_6 = function()
+g.test_list_argument_nullability_list_6 = function(g) -- luacheck: no unused args
     local argument_type = 'list'
     local argument_nullability = Nullable
     local argument_inner_type = 'float'
     local argument_inner_nullability = NonNullable
-    local value = nil
+    local argument_value = nil
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery { test(arg1: null) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -697,32 +630,28 @@ g.test_list_argument_nullability_list_6 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_list_argument_nullability_list_7 = function()
+g.test_list_argument_nullability_list_7 = function(g) -- luacheck: no unused args
     local argument_type = 'list'
     local argument_nullability = Nullable
     local argument_inner_type = 'float'
     local argument_inner_nullability = NonNullable
-    local value = box.NULL
+    local argument_value = box.NULL
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery { test(arg1: null) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -738,32 +667,28 @@ g.test_list_argument_nullability_list_7 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_list_argument_nullability_list_8 = function()
+g.test_list_argument_nullability_list_8 = function(g) -- luacheck: no unused args
     local argument_type = 'list'
     local argument_nullability = Nullable
     local argument_inner_type = 'float'
     local argument_inner_nullability = NonNullable
-    local value = nil
+    local argument_value = nil
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery { test(arg1: []) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -779,32 +704,28 @@ g.test_list_argument_nullability_list_8 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_list_argument_nullability_list_9 = function()
+g.test_list_argument_nullability_list_9 = function(g) -- luacheck: no unused args
     local argument_type = 'list'
     local argument_nullability = Nullable
     local argument_inner_type = 'float'
     local argument_inner_nullability = NonNullable
-    local value = box.NULL
+    local argument_value = box.NULL
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery { test(arg1: [null]) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -820,32 +741,28 @@ g.test_list_argument_nullability_list_9 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_list_argument_nullability_list_10 = function()
+g.test_list_argument_nullability_list_10 = function(g) -- luacheck: no unused args
     local argument_type = 'list'
     local argument_nullability = Nullable
     local argument_inner_type = 'float'
     local argument_inner_nullability = NonNullable
-    local value = 1.11111
+    local argument_value = 1.11111
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery { test(arg1: [1.11111]) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -861,32 +778,28 @@ g.test_list_argument_nullability_list_10 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_list_argument_nullability_list_11 = function()
+g.test_list_argument_nullability_list_11 = function(g) -- luacheck: no unused args
     local argument_type = 'list'
     local argument_nullability = NonNullable
     local argument_inner_type = 'float'
     local argument_inner_nullability = Nullable
-    local value = nil
+    local argument_value = nil
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery { test(arg1: null) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -902,32 +815,28 @@ g.test_list_argument_nullability_list_11 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_list_argument_nullability_list_12 = function()
+g.test_list_argument_nullability_list_12 = function(g) -- luacheck: no unused args
     local argument_type = 'list'
     local argument_nullability = NonNullable
     local argument_inner_type = 'float'
     local argument_inner_nullability = Nullable
-    local value = box.NULL
+    local argument_value = box.NULL
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery { test(arg1: null) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -943,32 +852,28 @@ g.test_list_argument_nullability_list_12 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_list_argument_nullability_list_13 = function()
+g.test_list_argument_nullability_list_13 = function(g) -- luacheck: no unused args
     local argument_type = 'list'
     local argument_nullability = NonNullable
     local argument_inner_type = 'float'
     local argument_inner_nullability = Nullable
-    local value = nil
+    local argument_value = nil
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery { test(arg1: []) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -984,32 +889,28 @@ g.test_list_argument_nullability_list_13 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_list_argument_nullability_list_14 = function()
+g.test_list_argument_nullability_list_14 = function(g) -- luacheck: no unused args
     local argument_type = 'list'
     local argument_nullability = NonNullable
     local argument_inner_type = 'float'
     local argument_inner_nullability = Nullable
-    local value = box.NULL
+    local argument_value = box.NULL
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery { test(arg1: [null]) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -1025,32 +926,28 @@ g.test_list_argument_nullability_list_14 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_list_argument_nullability_list_15 = function()
+g.test_list_argument_nullability_list_15 = function(g) -- luacheck: no unused args
     local argument_type = 'list'
     local argument_nullability = NonNullable
     local argument_inner_type = 'float'
     local argument_inner_nullability = Nullable
-    local value = 1.11111
+    local argument_value = 1.11111
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery { test(arg1: [1.11111]) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -1066,32 +963,28 @@ g.test_list_argument_nullability_list_15 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_list_argument_nullability_list_16 = function()
+g.test_list_argument_nullability_list_16 = function(g) -- luacheck: no unused args
     local argument_type = 'list'
     local argument_nullability = NonNullable
     local argument_inner_type = 'float'
     local argument_inner_nullability = NonNullable
-    local value = nil
+    local argument_value = nil
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery { test(arg1: null) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -1107,32 +1000,28 @@ g.test_list_argument_nullability_list_16 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_list_argument_nullability_list_17 = function()
+g.test_list_argument_nullability_list_17 = function(g) -- luacheck: no unused args
     local argument_type = 'list'
     local argument_nullability = NonNullable
     local argument_inner_type = 'float'
     local argument_inner_nullability = NonNullable
-    local value = box.NULL
+    local argument_value = box.NULL
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery { test(arg1: null) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -1148,32 +1037,28 @@ g.test_list_argument_nullability_list_17 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_list_argument_nullability_list_18 = function()
+g.test_list_argument_nullability_list_18 = function(g) -- luacheck: no unused args
     local argument_type = 'list'
     local argument_nullability = NonNullable
     local argument_inner_type = 'float'
     local argument_inner_nullability = NonNullable
-    local value = nil
+    local argument_value = nil
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery { test(arg1: []) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -1189,32 +1074,28 @@ g.test_list_argument_nullability_list_18 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_list_argument_nullability_list_19 = function()
+g.test_list_argument_nullability_list_19 = function(g) -- luacheck: no unused args
     local argument_type = 'list'
     local argument_nullability = NonNullable
     local argument_inner_type = 'float'
     local argument_inner_nullability = NonNullable
-    local value = box.NULL
+    local argument_value = box.NULL
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery { test(arg1: [null]) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -1230,32 +1111,28 @@ g.test_list_argument_nullability_list_19 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_list_argument_nullability_list_20 = function()
+g.test_list_argument_nullability_list_20 = function(g) -- luacheck: no unused args
     local argument_type = 'list'
     local argument_nullability = NonNullable
     local argument_inner_type = 'float'
     local argument_inner_nullability = NonNullable
-    local value = 1.11111
+    local argument_value = 1.11111
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery { test(arg1: [1.11111]) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -1271,32 +1148,28 @@ g.test_list_argument_nullability_list_20 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_1 = function()
+g.test_nonlist_argument_with_variables_nullability_float_1 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = Nullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = nil
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'Nullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -1312,32 +1185,28 @@ g.test_nonlist_argument_with_variables_nullability_float_1 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_2 = function()
+g.test_nonlist_argument_with_variables_nullability_float_2 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = Nullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = nil
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'Nullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = box.NULL
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float = null) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -1353,32 +1222,28 @@ g.test_nonlist_argument_with_variables_nullability_float_2 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_3 = function()
+g.test_nonlist_argument_with_variables_nullability_float_3 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = Nullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = nil
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'Nullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = 1.11111
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float = 1.11111) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -1394,32 +1259,28 @@ g.test_nonlist_argument_with_variables_nullability_float_3 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_4 = function()
+g.test_nonlist_argument_with_variables_nullability_float_4 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = Nullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = box.NULL
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'Nullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -1435,32 +1296,28 @@ g.test_nonlist_argument_with_variables_nullability_float_4 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_5 = function()
+g.test_nonlist_argument_with_variables_nullability_float_5 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = Nullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = box.NULL
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'Nullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = box.NULL
+    local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float = null) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -1476,32 +1333,28 @@ g.test_nonlist_argument_with_variables_nullability_float_5 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_6 = function()
+g.test_nonlist_argument_with_variables_nullability_float_6 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = Nullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = box.NULL
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'Nullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = 1.11111
+    local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float = 1.11111) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -1517,32 +1370,28 @@ g.test_nonlist_argument_with_variables_nullability_float_6 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_7 = function()
+g.test_nonlist_argument_with_variables_nullability_float_7 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = Nullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = 1.11111
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'Nullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = 1.11111
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -1558,32 +1407,28 @@ g.test_nonlist_argument_with_variables_nullability_float_7 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_8 = function()
+g.test_nonlist_argument_with_variables_nullability_float_8 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = Nullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = 1.11111
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'Nullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = box.NULL
+    local variable_value = 1.11111
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float = null) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -1599,32 +1444,28 @@ g.test_nonlist_argument_with_variables_nullability_float_8 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_9 = function()
+g.test_nonlist_argument_with_variables_nullability_float_9 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = Nullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = 1.11111
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'Nullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = 1.11111
+    local variable_value = 1.11111
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float = 1.11111) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -1640,32 +1481,28 @@ g.test_nonlist_argument_with_variables_nullability_float_9 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_10 = function()
+g.test_nonlist_argument_with_variables_nullability_float_10 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = Nullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = nil
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'NonNullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float!) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -1675,38 +1512,34 @@ g.test_nonlist_argument_with_variables_nullability_float_10 = function()
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" of required type \"Float!\" was not provided."
+    local expected_error_json = "Variable \"var1\" expected to be non-null"
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_11 = function()
+g.test_nonlist_argument_with_variables_nullability_float_11 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = Nullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = nil
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'NonNullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = box.NULL
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float! = null) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -1722,32 +1555,28 @@ g.test_nonlist_argument_with_variables_nullability_float_11 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_12 = function()
+g.test_nonlist_argument_with_variables_nullability_float_12 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = Nullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = nil
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'NonNullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = 1.11111
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float! = 1.11111) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -1763,32 +1592,28 @@ g.test_nonlist_argument_with_variables_nullability_float_12 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_13 = function()
+g.test_nonlist_argument_with_variables_nullability_float_13 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = Nullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = box.NULL
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'NonNullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float!) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -1798,38 +1623,34 @@ g.test_nonlist_argument_with_variables_nullability_float_13 = function()
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" of non-null type \"Float!\" must not be null."
+    local expected_error_json = "Variable \"var1\" expected to be non-null"
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_14 = function()
+g.test_nonlist_argument_with_variables_nullability_float_14 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = Nullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = box.NULL
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'NonNullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = box.NULL
+    local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float! = null) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -1845,32 +1666,28 @@ g.test_nonlist_argument_with_variables_nullability_float_14 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_15 = function()
+g.test_nonlist_argument_with_variables_nullability_float_15 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = Nullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = box.NULL
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'NonNullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = 1.11111
+    local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float! = 1.11111) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -1880,38 +1697,34 @@ g.test_nonlist_argument_with_variables_nullability_float_15 = function()
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" of non-null type \"Float!\" must not be null."
+    local expected_error_json = "Variable \"var1\" expected to be non-null"
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_16 = function()
+g.test_nonlist_argument_with_variables_nullability_float_16 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = Nullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = 1.11111
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'NonNullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = 1.11111
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float!) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -1927,32 +1740,28 @@ g.test_nonlist_argument_with_variables_nullability_float_16 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_17 = function()
+g.test_nonlist_argument_with_variables_nullability_float_17 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = Nullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = 1.11111
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'NonNullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = box.NULL
+    local variable_value = 1.11111
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float! = null) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -1968,32 +1777,28 @@ g.test_nonlist_argument_with_variables_nullability_float_17 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_18 = function()
+g.test_nonlist_argument_with_variables_nullability_float_18 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = Nullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = 1.11111
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'NonNullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = 1.11111
+    local variable_value = 1.11111
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float! = 1.11111) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -2009,32 +1814,28 @@ g.test_nonlist_argument_with_variables_nullability_float_18 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_19 = function()
+g.test_nonlist_argument_with_variables_nullability_float_19 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = NonNullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = nil
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'Nullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -2044,38 +1845,34 @@ g.test_nonlist_argument_with_variables_nullability_float_19 = function()
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" of type \"Float\" used in position expecting type \"Float!\"."
+    local expected_error_json = "Variable \"var1\" type mismatch: the variable type \"Float\" is not compatible with the argument type \"NonNull(Float)\""
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_20 = function()
+g.test_nonlist_argument_with_variables_nullability_float_20 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = NonNullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = nil
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'Nullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = box.NULL
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float = null) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -2085,38 +1882,34 @@ g.test_nonlist_argument_with_variables_nullability_float_20 = function()
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" of type \"Float\" used in position expecting type \"Float!\"."
+    local expected_error_json = "Variable \"var1\" type mismatch: the variable type \"Float\" is not compatible with the argument type \"NonNull(Float)\""
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_21 = function()
+g.test_nonlist_argument_with_variables_nullability_float_21 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = NonNullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = nil
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'Nullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = 1.11111
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float = 1.11111) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -2132,32 +1925,28 @@ g.test_nonlist_argument_with_variables_nullability_float_21 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_22 = function()
+g.test_nonlist_argument_with_variables_nullability_float_22 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = NonNullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = box.NULL
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'Nullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -2167,38 +1956,34 @@ g.test_nonlist_argument_with_variables_nullability_float_22 = function()
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" of type \"Float\" used in position expecting type \"Float!\"."
+    local expected_error_json = "Variable \"var1\" type mismatch: the variable type \"Float\" is not compatible with the argument type \"NonNull(Float)\""
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_23 = function()
+g.test_nonlist_argument_with_variables_nullability_float_23 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = NonNullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = box.NULL
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'Nullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = box.NULL
+    local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float = null) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -2208,38 +1993,34 @@ g.test_nonlist_argument_with_variables_nullability_float_23 = function()
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" of type \"Float\" used in position expecting type \"Float!\"."
+    local expected_error_json = "Variable \"var1\" type mismatch: the variable type \"Float\" is not compatible with the argument type \"NonNull(Float)\""
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_24 = function()
+g.test_nonlist_argument_with_variables_nullability_float_24 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = NonNullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = box.NULL
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'Nullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = 1.11111
+    local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float = 1.11111) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -2255,32 +2036,28 @@ g.test_nonlist_argument_with_variables_nullability_float_24 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_25 = function()
+g.test_nonlist_argument_with_variables_nullability_float_25 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = NonNullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = 1.11111
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'Nullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = 1.11111
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -2290,38 +2067,34 @@ g.test_nonlist_argument_with_variables_nullability_float_25 = function()
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" of type \"Float\" used in position expecting type \"Float!\"."
+    local expected_error_json = "Variable \"var1\" type mismatch: the variable type \"Float\" is not compatible with the argument type \"NonNull(Float)\""
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_26 = function()
+g.test_nonlist_argument_with_variables_nullability_float_26 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = NonNullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = 1.11111
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'Nullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = box.NULL
+    local variable_value = 1.11111
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float = null) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -2331,38 +2104,34 @@ g.test_nonlist_argument_with_variables_nullability_float_26 = function()
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" of type \"Float\" used in position expecting type \"Float!\"."
+    local expected_error_json = "Variable \"var1\" type mismatch: the variable type \"Float\" is not compatible with the argument type \"NonNull(Float)\""
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_27 = function()
+g.test_nonlist_argument_with_variables_nullability_float_27 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = NonNullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = 1.11111
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'Nullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = 1.11111
+    local variable_value = 1.11111
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float = 1.11111) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -2378,32 +2147,28 @@ g.test_nonlist_argument_with_variables_nullability_float_27 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_28 = function()
+g.test_nonlist_argument_with_variables_nullability_float_28 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = NonNullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = nil
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'NonNullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float!) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -2413,38 +2178,34 @@ g.test_nonlist_argument_with_variables_nullability_float_28 = function()
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" of required type \"Float!\" was not provided."
+    local expected_error_json = "Variable \"var1\" expected to be non-null"
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_29 = function()
+g.test_nonlist_argument_with_variables_nullability_float_29 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = NonNullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = nil
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'NonNullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = box.NULL
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float! = null) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -2460,32 +2221,28 @@ g.test_nonlist_argument_with_variables_nullability_float_29 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_30 = function()
+g.test_nonlist_argument_with_variables_nullability_float_30 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = NonNullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = nil
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'NonNullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = 1.11111
+    local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float! = 1.11111) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -2501,32 +2258,28 @@ g.test_nonlist_argument_with_variables_nullability_float_30 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_31 = function()
+g.test_nonlist_argument_with_variables_nullability_float_31 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = NonNullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = box.NULL
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'NonNullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float!) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -2536,38 +2289,34 @@ g.test_nonlist_argument_with_variables_nullability_float_31 = function()
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" of non-null type \"Float!\" must not be null."
+    local expected_error_json = "Variable \"var1\" expected to be non-null"
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_32 = function()
+g.test_nonlist_argument_with_variables_nullability_float_32 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = NonNullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = box.NULL
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'NonNullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = box.NULL
+    local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float! = null) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -2583,32 +2332,28 @@ g.test_nonlist_argument_with_variables_nullability_float_32 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_33 = function()
+g.test_nonlist_argument_with_variables_nullability_float_33 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = NonNullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = box.NULL
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'NonNullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = 1.11111
+    local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float! = 1.11111) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -2618,38 +2363,34 @@ g.test_nonlist_argument_with_variables_nullability_float_33 = function()
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" of non-null type \"Float!\" must not be null."
+    local expected_error_json = "Variable \"var1\" expected to be non-null"
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_34 = function()
+g.test_nonlist_argument_with_variables_nullability_float_34 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = NonNullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = 1.11111
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'NonNullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = nil
+    local variable_value = 1.11111
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float!) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -2665,32 +2406,28 @@ g.test_nonlist_argument_with_variables_nullability_float_34 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_35 = function()
+g.test_nonlist_argument_with_variables_nullability_float_35 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = NonNullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = 1.11111
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'NonNullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = box.NULL
+    local variable_value = 1.11111
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float! = null) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
@@ -2706,32 +2443,28 @@ g.test_nonlist_argument_with_variables_nullability_float_35 = function()
     t.assert_equals(err, expected_error_json)
 end
 
-g.test_nonlist_argument_with_variables_nullability_float_36 = function()
+g.test_nonlist_argument_with_variables_nullability_float_36 = function(g) -- luacheck: no unused args
     local argument_type = 'float'
     local argument_nullability = NonNullable
     local argument_inner_type = nil
     local argument_inner_nullability = nil
-    local value = 1.11111
+    local argument_value = nil
     local variable_type = 'float'
     local variable_nullability = 'NonNullable'
     local variable_inner_type = nil
     local variable_inner_nullability = nil
     local variable_default = 1.11111
+    local variable_value = 1.11111
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      value,
+                                      argument_value,
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
-                                      variable_default)
+                                      variable_value, variable_default)
     local query = "query MyQuery($var1: Float! = 1.11111) { test(arg1: $var1) { arg1 } }"
 
-    local ok, res
-    if variable_type == nil then
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
-    else
-        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
-    end
+    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
     local result, err
     if ok then
