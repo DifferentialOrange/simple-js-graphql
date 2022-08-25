@@ -448,8 +448,15 @@ function build_test_case(response, suite_name, i,
     let Lua_argument_value = to_Lua(argument_value)
     let Lua_variable_value = to_Lua(variable_value)
 
+    let type_in_name
+    if (argument_inner_type !== null) {
+        type_in_name = argument_inner_type
+    } else {
+        type_in_name = argument_type
+    }
+
     return `
-g.test_${suite_name}_${argument_type}_${i} = function(g) -- luacheck: no unused args
+g.test_${suite_name}_${type_in_name}_${i} = function(g) -- luacheck: no unused args
     local argument_type = ${Lua_argument_type}
     local argument_nullability = ${Lua_argument_nullability}
     local argument_inner_type = ${Lua_argument_inner_type}
