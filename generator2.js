@@ -51,25 +51,28 @@ function JS_to_Lua_error_map_func(s) {
 
 function build_schema(argument_type, argument_nullability,
                       argument_inner_type, argument_inner_nullability, 
-                      argument_value) {
-    var js_type = Lua_to_JS_type_map[argument_type]
-    var js_inner_type = Lua_to_JS_type_map[argument_inner_type]
+                      value,
+                      variable_type, variable_nullability,
+                      variable_inner_type, variable_inner_nullability, 
+                      variable_default) {
+    var js_argument_type = Lua_to_JS_type_map[argument_type]
+    var js_argument_inner_type = Lua_to_JS_type_map[argument_inner_type]
 
-    var js_nullability = ``
+    var js_argument_nullability = ``
     if (argument_nullability == NonNullable) {
-        js_nullability = `!`
+        js_argument_nullability = `!`
     }
 
-    var js_inner_nullability = ``
+    var js_argument_inner_nullability = ``
     if (argument_inner_nullability == NonNullable) {
-        js_inner_nullability = `!`
+        js_argument_inner_nullability = `!`
     }
 
     var argument_str
-    if (js_type === 'list') {
-        argument_str = `[${js_inner_type}${js_inner_nullability}]${js_nullability}`
+    if (js_argument_type === 'list') {
+        argument_str = `[${js_argument_inner_type}${js_argument_inner_nullability}]${js_argument_nullability}`
     } else {
-        argument_str = `${js_type}${js_nullability}`
+        argument_str = `${js_argument_type}${js_argument_nullability}`
     }
 
     var schema_str = `
@@ -87,23 +90,73 @@ function build_schema(argument_type, argument_nullability,
 
 function build_query(argument_type, argument_nullability,
                      argument_inner_type, argument_inner_nullability, 
-                     argument_value) {
-    var js_type = Lua_to_JS_type_map[argument_type]
+                     value,
+                     variable_type, variable_nullability,
+                     variable_inner_type, variable_inner_nullability, 
+                     variable_default) {
+    let js_argument_type = Lua_to_JS_type_map[argument_type]
+    let js_argument_inner_type = Lua_to_JS_type_map[argument_inner_type]
+    let js_variable_type = Lua_to_JS_type_map[variable_type]
+    let js_variable_inner_type = Lua_to_JS_type_map[variable_inner_type]
 
-    if ((argument_value == nil) || (argument_value == box.NULL)) {
+    var js_variable_nullability = ``
+    if (variable_nullability == NonNullable) {
+        js_variable_nullability = `!`
+    }
+
+    var js_variable_inner_nullability = ``
+    if (variable_inner_nullability == NonNullable) {
+        js_variable_inner_nullability = `!`
+    }
+
+    // Variable case
+    if (variable_type !== null) {
+        let variable_str
+        if (js_variable_type === 'list') {
+            variable_str = `[${js_variable_inner_type}${js_variable_inner_nullability_str}]${js_variable_inner_nullability}`
+        } else {
+          variable_str = `${js_variable_type}${js_variable_nullability}`
+        }
+
+        let default_str = ``
+        if (js_variable_type === 'list') {
+            if (variable_default[0] === nil) {
+                default_str = ` = []`
+            } else if (value[0] === box.NULL) {
+                default_str = ` = [null]`
+            } else {
+                var js_default = JSON.stringify(variable_default)
+                default_str = ` = [${js_default}]`
+            }
+        } else {
+            if (variable_default === nil) {
+                default_str = ``
+            } else if (variable_default === box.NULL) {
+                default_str = ` = null`
+            } else {
+                var js_default = JSON.stringify(variable_default)
+                default_str = ` = ${js_default}`
+            }
+        }
+
+        return `query MyQuery($var1: ${variable_str}${default_str}) { test(arg1: $var1) { arg1 } }`
+    }
+
+    // No variables case
+    if ((value === nil) || (value === box.NULL)) {
         return `query MyQuery { test(arg1: null) { arg1 } }`
     } else {
-        if (js_type == 'list') {
-            if (argument_value[0] == nil) {
+        if (js_argument_type === 'list') {
+            if (value[0] === nil) {
                 return `query MyQuery { test(arg1: []) { arg1 } }`
-            } else if (argument_value[0] == box.NULL) {
+            } else if (value[0] === box.NULL) {
                 return `query MyQuery { test(arg1: [null]) { arg1 } }`
             } else {
-                var js_value = JSON.stringify(argument_value)
+                var js_value = JSON.stringify(value)
                 return `query MyQuery { test(arg1: ${js_value}) { arg1 } }`
             }
         }
-        return `query MyQuery { test(arg1: ${argument_value}) { arg1 } }`
+        return `query MyQuery { test(arg1: ${value}) { arg1 } }`
     }
 };
 
@@ -283,7 +336,10 @@ end
 
 local function build_schema(argument_type, argument_nullability,
                             argument_inner_type, argument_inner_nullability,
-                            argument_value)
+                            value,
+                            variable_type, variable_nullability,
+                            variable_inner_type, variable_inner_nullability,
+                            variable_default)
     local type
     if argument_type == 'list' then
         if argument_inner_nullability == NonNullable then
@@ -322,7 +378,10 @@ console.log(test_header)
 function build_test_case(response, suite_name, i,
                          argument_type, argument_nullability,
                          argument_inner_type, argument_inner_nullability, 
-                         argument_value,
+                         value,
+                         variable_type, variable_nullability,
+                         variable_inner_type, variable_inner_nullability, 
+                         variable_default,
                          query) {
     var expected_data
 
@@ -342,36 +401,85 @@ function build_test_case(response, suite_name, i,
         expected_error = `nil`
     }
 
-    var Lua_type = `'${argument_type}'`
-    var Lua_nullability = argument_nullability
+    var Lua_argument_type = `'${argument_type}'`
+    var Lua_argument_nullability = argument_nullability
 
-    var Lua_inner_type
+    var Lua_argument_inner_type
     if (argument_inner_type !== null) {
-        Lua_inner_type = `'${argument_inner_type}'`
+        Lua_argument_inner_type = `'${argument_inner_type}'`
     } else {
-        Lua_inner_type = `nil`
+        Lua_argument_inner_type = `nil`
     }
 
-    var Lua_inner_nullability
+    var Lua_argument_inner_nullability
     if (argument_inner_nullability !== null) {
-        Lua_inner_nullability = argument_inner_nullability
+        Lua_argument_inner_nullability = argument_inner_nullability
     } else {
-        Lua_inner_nullability = `nil`
+        Lua_argument_inner_nullability = `nil`
     }
+
+    var Lua_variable_type
+    if (variable_type !== null) {
+        Lua_variable_type = `'${variable_type}'`
+    } else {
+        Lua_variable_type = `nil`
+    }
+
+    var Lua_variable_nullability
+    if (variable_nullability !== null) {
+        Lua_variable_nullability = `'${variable_nullability}'`
+    } else {
+        Lua_variable_nullability = `nil`
+    }
+
+    var Lua_variable_inner_type
+    if (variable_inner_type !== null) {
+        Lua_variable_inner_type = `'${variable_inner_type}'`
+    } else {
+        Lua_variable_inner_type = `nil`
+    }
+
+    var Lua_variable_inner_nullability
+    if (variable_inner_nullability !== null) {
+        Lua_variable_inner_nullability = `'${variable_inner_nullability}'`
+    } else {
+        Lua_variable_inner_nullability = `nil`
+    }
+
+    let variables = `nil`
+
+    let Lua_variable_default = `nil`
+    if (variable_default !== null) {
+        Lua_variable_default = variable_default
+    } 
 
     return `
 g.test_${suite_name}_${argument_type}_${i} = function()
-    local argument_type = ${Lua_type}
-    local argument_nullability = ${Lua_nullability}
-    local argument_inner_type = ${Lua_inner_type}
-    local argument_inner_nullability = ${Lua_inner_nullability}
-    local argument_value = ${argument_value}
+    local argument_type = ${Lua_argument_type}
+    local argument_nullability = ${Lua_argument_nullability}
+    local argument_inner_type = ${Lua_argument_inner_type}
+    local argument_inner_nullability = ${Lua_argument_inner_nullability}
+    local value = ${value}
+    local variable_type = ${Lua_variable_type}
+    local variable_nullability = ${Lua_variable_nullability}
+    local variable_inner_type = ${Lua_variable_inner_type}
+    local variable_inner_nullability = ${Lua_variable_inner_nullability}
+    local variable_default = ${Lua_variable_default}
+
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
-                                      argument_value)
+                                      value,
+                                      variable_type, variable_nullability,
+                                      variable_inner_type, variable_inner_nullability,
+                                      variable_default)
     local query = "${query}"
 
-    local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
+    local ok, res
+    if variable_type == nil then
+        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, nil)
+    else
+        ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = value }})
+    end
 
     local result, err
     if ok then
@@ -388,53 +496,148 @@ g.test_${suite_name}_${argument_type}_${i} = function()
 end`
 }
 
+function build_variables(argument_type, argument_nullability,
+                         argument_inner_type, argument_inner_nullability, 
+                         value,
+                         variable_type, variable_nullability,
+                         variable_inner_type, variable_inner_nullability, 
+                         variable_default) {
+    let variables = [];
+
+    if (value !== nil) {
+        if (value === box.NULL) {
+            variables = {var1: null}
+        } else {
+            variables = {var1: value}
+        }
+    }
+
+    return variables
+}
+
 async function build_suite(suite_name,
                      argument_type, argument_nullabilities,
                      argument_inner_type, argument_inner_nullabilities,
-                     argument_values) {
+                     values, // argument values in case of no variable and variable value if it is used
+                     variable_type, variable_nullabilities,
+                     variable_inner_type, variable_inner_nullabilities,
+                     variable_defaults) {
     let i = 0
 
     if (argument_inner_nullabilities.length == 0) {
+        // Non-list case
         let argument_inner_nullability = null
+        let variable_inner_nullability = null
 
-        argument_nullabilities.forEach( async function (argument_nullability) {
-            argument_values.forEach( async function (argument_value)  {
-                let schema = build_schema(argument_type, argument_nullability,
-                                          argument_inner_type, argument_inner_nullability, 
-                                          argument_value)
-                let query = build_query(argument_type, argument_nullability,
-                                        argument_inner_type, argument_inner_nullability, 
-                                        argument_value)
-                
+        if (variable_type == null) {
+            // No variables case
+            let variable_nullability = null
+            let variable_default = null
 
-                await graphql({
-                    schema,
-                    source: query,
-                    rootValue,
-                }).then((response) => {
-                    i = i + 1
-                    console.log(build_test_case(response, suite_name, i,
-                                           argument_type, argument_nullability,
-                                           argument_inner_type, argument_inner_nullability, 
-                                           argument_value,
-                                           query))
+            argument_nullabilities.forEach( async function (argument_nullability) {
+                values.forEach( async function (value)  {
+                    let schema = build_schema(argument_type, argument_nullability,
+                                              argument_inner_type, argument_inner_nullability, 
+                                              value,
+                                              variable_type, variable_nullability,
+                                              variable_inner_type, variable_inner_nullability, 
+                                              variable_default)
+                    let query = build_query(argument_type, argument_nullability,
+                                            argument_inner_type, argument_inner_nullability, 
+                                            value,
+                                            variable_type, variable_nullability,
+                                            variable_inner_type, variable_inner_nullability, 
+                                            variable_default)
+                    
+
+                    await graphql({
+                        schema,
+                        source: query,
+                        rootValue,
+                    }).then((response) => {
+                        i = i + 1
+                        console.log(build_test_case(response, suite_name, i,
+                                               argument_type, argument_nullability,
+                                               argument_inner_type, argument_inner_nullability, 
+                                               value,
+                                               variable_type, variable_nullability,
+                                               variable_inner_type, variable_inner_nullability, 
+                                               variable_default,
+                                               query))
+                    })
                 })
             })
-        })
+        } else {
+            argument_nullabilities.forEach( async function (argument_nullability) {
+                variable_nullabilities.forEach( async function (variable_nullability)  {
+                    values.forEach( async function (value)  {
+                        variable_defaults.forEach( async function (variable_default)  {
+                            let schema = build_schema(argument_type, argument_nullability,
+                                                      argument_inner_type, argument_inner_nullability, 
+                                                      value,
+                                                      variable_type, variable_nullability,
+                                                      variable_inner_type, variable_inner_nullability, 
+                                                      variable_default)
+                            let query = build_query(argument_type, argument_nullability,
+                                                    argument_inner_type, argument_inner_nullability, 
+                                                    value,
+                                                    variable_type, variable_nullability,
+                                                    variable_inner_type, variable_inner_nullability, 
+                                                    variable_default)
+
+                            let variables = build_variables(argument_type, argument_nullability,
+                                                            argument_inner_type, argument_inner_nullability, 
+                                                            value,
+                                                            variable_type, variable_nullability,
+                                                            variable_inner_type, variable_inner_nullability, 
+                                                            variable_default)
+                            
+
+                            await graphql({
+                                schema,
+                                source: query,
+                                rootValue,
+                                variableValues: variables
+                            }).then((response) => {
+                                i = i + 1
+                                console.log(build_test_case(response, suite_name, i,
+                                                            argument_type, argument_nullability,
+                                                            argument_inner_type, argument_inner_nullability, 
+                                                            value,
+                                                            variable_type, variable_nullability,
+                                                            variable_inner_type, variable_inner_nullability, 
+                                                            variable_default,
+                                                            query))
+                            })
+                        })
+                    })
+                })
+            })
+        }
 
         return
     }
 
+    // List case
     argument_nullabilities.forEach( async function (argument_nullability) {
         argument_inner_nullabilities.forEach( async function (argument_inner_nullability) {
-            argument_values.forEach( async function (argument_value)  {
+            values.forEach( async function (value)  {
+                let variable_nullability = null
+                let variable_inner_nullability = null
+                let variable_default = null
 
                 let schema = build_schema(argument_type, argument_nullability,
                                           argument_inner_type, argument_inner_nullability, 
-                                          argument_value)
+                                          value,
+                                          variable_type, variable_nullability,
+                                          variable_inner_type, variable_inner_nullability, 
+                                          variable_default)
                 let query = build_query(argument_type, argument_nullability,
                                         argument_inner_type, argument_inner_nullability, 
-                                        argument_value)
+                                        value,
+                                        variable_type, variable_nullability,
+                                        variable_inner_type, variable_inner_nullability, 
+                                        variable_default)
                 
                 await graphql({
                     schema,
@@ -443,10 +646,13 @@ async function build_suite(suite_name,
                 }).then((response) => {
                     i = i + 1
                     console.log(build_test_case(response, suite_name, i,
-                                           argument_type, argument_nullability,
-                                           argument_inner_type, argument_inner_nullability, 
-                                           argument_value,
-                                           query))
+                                                argument_type, argument_nullability,
+                                                argument_inner_type, argument_inner_nullability, 
+                                                value,
+                                                variable_type, variable_nullability,
+                                                variable_inner_type, variable_inner_nullability, 
+                                                variable_default,
+                                                query))
                 })
             })
         })
@@ -463,20 +669,29 @@ async function build_suite(suite_name,
 build_suite('nonlist_argument_nullability',
             Float, [Nullable, NonNullable],
             null, [],
-            [nil, box.NULL, value])
+            [nil, box.NULL, value],
+            null, [],
+            null, [],
+            [])
 
 // == List argument nullability ==
 // 
-// {nil} is the same is {} in Lua.
-
-// suite_name = 'list_argument_nullability'
-// argument_type = 'list'
-// argument_nullabilities = [Nullable, NonNullable]
-// argument_inner_type = Float
-// argument_inner_nullability = [Nullable, NonNullable]
-// argument_values = [nil, box.NULL, [nil], [box.NULL], [value]]
+// {nil} is the same as {} in Lua.
 
 build_suite('list_argument_nullability',
             'list', [Nullable, NonNullable],
             Float, [Nullable, NonNullable],
-            [nil, box.NULL, [nil], [box.NULL], [value]])
+            [nil, box.NULL, [nil], [box.NULL], [value]],
+            null, [],
+            null, [],
+            [])
+
+// == Non-list argument with variable nullability ==
+
+build_suite('nonlist_argument_with_variables_nullability',
+            Float, [Nullable, NonNullable],
+            null, [],
+            [nil, box.NULL, value],
+            Float, [Nullable, NonNullable],
+            null, [],
+            [nil, box.NULL, value],)
