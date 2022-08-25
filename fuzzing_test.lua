@@ -486,7 +486,7 @@ g.test_list_argument_nullability_float_3 = function(g) -- luacheck: no unused ar
     local argument_nullability = Nullable
     local argument_inner_type = 'float'
     local argument_inner_nullability = Nullable
-    local argument_value = nil
+    local argument_value = {}
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
@@ -523,7 +523,7 @@ g.test_list_argument_nullability_float_4 = function(g) -- luacheck: no unused ar
     local argument_nullability = Nullable
     local argument_inner_type = 'float'
     local argument_inner_nullability = Nullable
-    local argument_value = box.NULL
+    local argument_value = {box.NULL}
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
@@ -560,7 +560,7 @@ g.test_list_argument_nullability_float_5 = function(g) -- luacheck: no unused ar
     local argument_nullability = Nullable
     local argument_inner_type = 'float'
     local argument_inner_nullability = Nullable
-    local argument_value = 1.11111
+    local argument_value = {1.11111}
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
@@ -671,7 +671,7 @@ g.test_list_argument_nullability_float_8 = function(g) -- luacheck: no unused ar
     local argument_nullability = Nullable
     local argument_inner_type = 'float'
     local argument_inner_nullability = NonNullable
-    local argument_value = nil
+    local argument_value = {}
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
@@ -708,7 +708,7 @@ g.test_list_argument_nullability_float_9 = function(g) -- luacheck: no unused ar
     local argument_nullability = Nullable
     local argument_inner_type = 'float'
     local argument_inner_nullability = NonNullable
-    local argument_value = box.NULL
+    local argument_value = {box.NULL}
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
@@ -745,7 +745,7 @@ g.test_list_argument_nullability_float_10 = function(g) -- luacheck: no unused a
     local argument_nullability = Nullable
     local argument_inner_type = 'float'
     local argument_inner_nullability = NonNullable
-    local argument_value = 1.11111
+    local argument_value = {1.11111}
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
@@ -856,7 +856,7 @@ g.test_list_argument_nullability_float_13 = function(g) -- luacheck: no unused a
     local argument_nullability = NonNullable
     local argument_inner_type = 'float'
     local argument_inner_nullability = Nullable
-    local argument_value = nil
+    local argument_value = {}
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
@@ -893,7 +893,7 @@ g.test_list_argument_nullability_float_14 = function(g) -- luacheck: no unused a
     local argument_nullability = NonNullable
     local argument_inner_type = 'float'
     local argument_inner_nullability = Nullable
-    local argument_value = box.NULL
+    local argument_value = {box.NULL}
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
@@ -930,7 +930,7 @@ g.test_list_argument_nullability_float_15 = function(g) -- luacheck: no unused a
     local argument_nullability = NonNullable
     local argument_inner_type = 'float'
     local argument_inner_nullability = Nullable
-    local argument_value = 1.11111
+    local argument_value = {1.11111}
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
@@ -1041,7 +1041,7 @@ g.test_list_argument_nullability_float_18 = function(g) -- luacheck: no unused a
     local argument_nullability = NonNullable
     local argument_inner_type = 'float'
     local argument_inner_nullability = NonNullable
-    local argument_value = nil
+    local argument_value = {}
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
@@ -1078,7 +1078,7 @@ g.test_list_argument_nullability_float_19 = function(g) -- luacheck: no unused a
     local argument_nullability = NonNullable
     local argument_inner_type = 'float'
     local argument_inner_nullability = NonNullable
-    local argument_value = box.NULL
+    local argument_value = {box.NULL}
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
@@ -1115,7 +1115,7 @@ g.test_list_argument_nullability_float_20 = function(g) -- luacheck: no unused a
     local argument_nullability = NonNullable
     local argument_inner_type = 'float'
     local argument_inner_nullability = NonNullable
-    local argument_value = 1.11111
+    local argument_value = {1.11111}
     local variable_type = nil
     local variable_nullability = nil
     local variable_inner_type = nil
@@ -2563,7 +2563,7 @@ g.test_list_argument_with_variables_nullability_float_3 = function(g) -- luachec
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
+    local variable_default = {}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -2600,7 +2600,7 @@ g.test_list_argument_with_variables_nullability_float_4 = function(g) -- luachec
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
+    local variable_default = {box.NULL}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -2637,7 +2637,7 @@ g.test_list_argument_with_variables_nullability_float_5 = function(g) -- luachec
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
+    local variable_default = {0}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -2748,7 +2748,7 @@ g.test_list_argument_with_variables_nullability_float_8 = function(g) -- luachec
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
+    local variable_default = {}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -2785,7 +2785,7 @@ g.test_list_argument_with_variables_nullability_float_9 = function(g) -- luachec
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
+    local variable_default = {box.NULL}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -2822,7 +2822,7 @@ g.test_list_argument_with_variables_nullability_float_10 = function(g) -- luache
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
+    local variable_default = {0}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -2860,7 +2860,7 @@ g.test_list_argument_with_variables_nullability_float_11 = function(g) -- luache
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = nil
-    local variable_value = nil
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -2879,8 +2879,8 @@ g.test_list_argument_with_variables_nullability_float_11 = function(g) -- luache
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -2897,7 +2897,7 @@ g.test_list_argument_with_variables_nullability_float_12 = function(g) -- luache
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = box.NULL
-    local variable_value = nil
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -2916,8 +2916,8 @@ g.test_list_argument_with_variables_nullability_float_12 = function(g) -- luache
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -2933,8 +2933,8 @@ g.test_list_argument_with_variables_nullability_float_13 = function(g) -- luache
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
-    local variable_value = nil
+    local variable_default = {}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -2953,8 +2953,8 @@ g.test_list_argument_with_variables_nullability_float_13 = function(g) -- luache
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -2970,8 +2970,8 @@ g.test_list_argument_with_variables_nullability_float_14 = function(g) -- luache
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
-    local variable_value = nil
+    local variable_default = {box.NULL}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -2990,8 +2990,8 @@ g.test_list_argument_with_variables_nullability_float_14 = function(g) -- luache
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -3007,8 +3007,8 @@ g.test_list_argument_with_variables_nullability_float_15 = function(g) -- luache
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
-    local variable_value = nil
+    local variable_default = {0}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -3027,8 +3027,8 @@ g.test_list_argument_with_variables_nullability_float_15 = function(g) -- luache
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -3045,7 +3045,7 @@ g.test_list_argument_with_variables_nullability_float_16 = function(g) -- luache
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = nil
-    local variable_value = box.NULL
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -3064,8 +3064,8 @@ g.test_list_argument_with_variables_nullability_float_16 = function(g) -- luache
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_data_json = '{"test":{"arg1":[null]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -3082,7 +3082,7 @@ g.test_list_argument_with_variables_nullability_float_17 = function(g) -- luache
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = box.NULL
-    local variable_value = box.NULL
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -3101,8 +3101,8 @@ g.test_list_argument_with_variables_nullability_float_17 = function(g) -- luache
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_data_json = '{"test":{"arg1":[null]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -3118,8 +3118,8 @@ g.test_list_argument_with_variables_nullability_float_18 = function(g) -- luache
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
-    local variable_value = box.NULL
+    local variable_default = {}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -3138,8 +3138,8 @@ g.test_list_argument_with_variables_nullability_float_18 = function(g) -- luache
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_data_json = '{"test":{"arg1":[null]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -3155,8 +3155,8 @@ g.test_list_argument_with_variables_nullability_float_19 = function(g) -- luache
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
-    local variable_value = box.NULL
+    local variable_default = {box.NULL}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -3175,8 +3175,8 @@ g.test_list_argument_with_variables_nullability_float_19 = function(g) -- luache
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_data_json = '{"test":{"arg1":[null]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -3192,8 +3192,8 @@ g.test_list_argument_with_variables_nullability_float_20 = function(g) -- luache
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
-    local variable_value = box.NULL
+    local variable_default = {0}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -3212,8 +3212,8 @@ g.test_list_argument_with_variables_nullability_float_20 = function(g) -- luache
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_data_json = '{"test":{"arg1":[null]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -3230,7 +3230,7 @@ g.test_list_argument_with_variables_nullability_float_21 = function(g) -- luache
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = nil
-    local variable_value = 1.11111
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -3267,7 +3267,7 @@ g.test_list_argument_with_variables_nullability_float_22 = function(g) -- luache
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = box.NULL
-    local variable_value = 1.11111
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -3303,8 +3303,8 @@ g.test_list_argument_with_variables_nullability_float_23 = function(g) -- luache
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
-    local variable_value = 1.11111
+    local variable_default = {}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -3340,8 +3340,8 @@ g.test_list_argument_with_variables_nullability_float_24 = function(g) -- luache
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
-    local variable_value = 1.11111
+    local variable_default = {box.NULL}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -3377,8 +3377,8 @@ g.test_list_argument_with_variables_nullability_float_25 = function(g) -- luache
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
-    local variable_value = 1.11111
+    local variable_default = {0}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -3488,7 +3488,7 @@ g.test_list_argument_with_variables_nullability_float_28 = function(g) -- luache
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
+    local variable_default = {}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -3525,7 +3525,7 @@ g.test_list_argument_with_variables_nullability_float_29 = function(g) -- luache
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
+    local variable_default = {box.NULL}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -3562,7 +3562,7 @@ g.test_list_argument_with_variables_nullability_float_30 = function(g) -- luache
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
+    local variable_default = {0}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -3673,7 +3673,7 @@ g.test_list_argument_with_variables_nullability_float_33 = function(g) -- luache
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
+    local variable_default = {}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -3710,7 +3710,7 @@ g.test_list_argument_with_variables_nullability_float_34 = function(g) -- luache
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
+    local variable_default = {box.NULL}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -3747,7 +3747,7 @@ g.test_list_argument_with_variables_nullability_float_35 = function(g) -- luache
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
+    local variable_default = {0}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -3785,7 +3785,7 @@ g.test_list_argument_with_variables_nullability_float_36 = function(g) -- luache
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = nil
-    local variable_value = nil
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -3804,8 +3804,8 @@ g.test_list_argument_with_variables_nullability_float_36 = function(g) -- luache
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -3822,7 +3822,7 @@ g.test_list_argument_with_variables_nullability_float_37 = function(g) -- luache
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = box.NULL
-    local variable_value = nil
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -3841,8 +3841,8 @@ g.test_list_argument_with_variables_nullability_float_37 = function(g) -- luache
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -3858,8 +3858,8 @@ g.test_list_argument_with_variables_nullability_float_38 = function(g) -- luache
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
-    local variable_value = nil
+    local variable_default = {}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -3878,8 +3878,8 @@ g.test_list_argument_with_variables_nullability_float_38 = function(g) -- luache
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -3895,8 +3895,8 @@ g.test_list_argument_with_variables_nullability_float_39 = function(g) -- luache
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
-    local variable_value = nil
+    local variable_default = {box.NULL}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -3932,8 +3932,8 @@ g.test_list_argument_with_variables_nullability_float_40 = function(g) -- luache
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
-    local variable_value = nil
+    local variable_default = {0}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -3952,8 +3952,8 @@ g.test_list_argument_with_variables_nullability_float_40 = function(g) -- luache
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -3970,7 +3970,7 @@ g.test_list_argument_with_variables_nullability_float_41 = function(g) -- luache
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = nil
-    local variable_value = box.NULL
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -3990,7 +3990,7 @@ g.test_list_argument_with_variables_nullability_float_41 = function(g) -- luache
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_error_json = "Variable \"$var1\" got invalid value null at \"var1[0]\"; Expected non-nullable type \"Float!\" not to be null."
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -4007,7 +4007,7 @@ g.test_list_argument_with_variables_nullability_float_42 = function(g) -- luache
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = box.NULL
-    local variable_value = box.NULL
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -4027,7 +4027,7 @@ g.test_list_argument_with_variables_nullability_float_42 = function(g) -- luache
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_error_json = "Variable \"$var1\" got invalid value null at \"var1[0]\"; Expected non-nullable type \"Float!\" not to be null."
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -4043,8 +4043,8 @@ g.test_list_argument_with_variables_nullability_float_43 = function(g) -- luache
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
-    local variable_value = box.NULL
+    local variable_default = {}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -4064,7 +4064,7 @@ g.test_list_argument_with_variables_nullability_float_43 = function(g) -- luache
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_error_json = "Variable \"$var1\" got invalid value null at \"var1[0]\"; Expected non-nullable type \"Float!\" not to be null."
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -4080,8 +4080,8 @@ g.test_list_argument_with_variables_nullability_float_44 = function(g) -- luache
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
-    local variable_value = box.NULL
+    local variable_default = {box.NULL}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -4117,8 +4117,8 @@ g.test_list_argument_with_variables_nullability_float_45 = function(g) -- luache
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
-    local variable_value = box.NULL
+    local variable_default = {0}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -4138,7 +4138,7 @@ g.test_list_argument_with_variables_nullability_float_45 = function(g) -- luache
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_error_json = "Variable \"$var1\" got invalid value null at \"var1[0]\"; Expected non-nullable type \"Float!\" not to be null."
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -4155,7 +4155,7 @@ g.test_list_argument_with_variables_nullability_float_46 = function(g) -- luache
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = nil
-    local variable_value = 1.11111
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -4192,7 +4192,7 @@ g.test_list_argument_with_variables_nullability_float_47 = function(g) -- luache
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = box.NULL
-    local variable_value = 1.11111
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -4228,8 +4228,8 @@ g.test_list_argument_with_variables_nullability_float_48 = function(g) -- luache
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
-    local variable_value = 1.11111
+    local variable_default = {}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -4265,8 +4265,8 @@ g.test_list_argument_with_variables_nullability_float_49 = function(g) -- luache
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
-    local variable_value = 1.11111
+    local variable_default = {box.NULL}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -4302,8 +4302,8 @@ g.test_list_argument_with_variables_nullability_float_50 = function(g) -- luache
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
-    local variable_value = 1.11111
+    local variable_default = {0}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -4413,7 +4413,7 @@ g.test_list_argument_with_variables_nullability_float_53 = function(g) -- luache
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
+    local variable_default = {}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -4450,7 +4450,7 @@ g.test_list_argument_with_variables_nullability_float_54 = function(g) -- luache
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
+    local variable_default = {box.NULL}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -4487,7 +4487,7 @@ g.test_list_argument_with_variables_nullability_float_55 = function(g) -- luache
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
+    local variable_default = {0}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -4598,7 +4598,7 @@ g.test_list_argument_with_variables_nullability_float_58 = function(g) -- luache
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
+    local variable_default = {}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -4635,7 +4635,7 @@ g.test_list_argument_with_variables_nullability_float_59 = function(g) -- luache
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
+    local variable_default = {box.NULL}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -4672,7 +4672,7 @@ g.test_list_argument_with_variables_nullability_float_60 = function(g) -- luache
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
+    local variable_default = {0}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -4710,7 +4710,7 @@ g.test_list_argument_with_variables_nullability_float_61 = function(g) -- luache
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = nil
-    local variable_value = nil
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -4729,8 +4729,8 @@ g.test_list_argument_with_variables_nullability_float_61 = function(g) -- luache
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -4747,7 +4747,7 @@ g.test_list_argument_with_variables_nullability_float_62 = function(g) -- luache
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = box.NULL
-    local variable_value = nil
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -4783,8 +4783,8 @@ g.test_list_argument_with_variables_nullability_float_63 = function(g) -- luache
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
-    local variable_value = nil
+    local variable_default = {}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -4803,8 +4803,8 @@ g.test_list_argument_with_variables_nullability_float_63 = function(g) -- luache
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -4820,8 +4820,8 @@ g.test_list_argument_with_variables_nullability_float_64 = function(g) -- luache
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
-    local variable_value = nil
+    local variable_default = {box.NULL}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -4840,8 +4840,8 @@ g.test_list_argument_with_variables_nullability_float_64 = function(g) -- luache
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -4857,8 +4857,8 @@ g.test_list_argument_with_variables_nullability_float_65 = function(g) -- luache
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
-    local variable_value = nil
+    local variable_default = {0}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -4877,8 +4877,8 @@ g.test_list_argument_with_variables_nullability_float_65 = function(g) -- luache
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -4895,7 +4895,7 @@ g.test_list_argument_with_variables_nullability_float_66 = function(g) -- luache
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = nil
-    local variable_value = box.NULL
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -4914,8 +4914,8 @@ g.test_list_argument_with_variables_nullability_float_66 = function(g) -- luache
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_data_json = '{"test":{"arg1":[null]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -4932,7 +4932,7 @@ g.test_list_argument_with_variables_nullability_float_67 = function(g) -- luache
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = box.NULL
-    local variable_value = box.NULL
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -4968,8 +4968,8 @@ g.test_list_argument_with_variables_nullability_float_68 = function(g) -- luache
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
-    local variable_value = box.NULL
+    local variable_default = {}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -4988,8 +4988,8 @@ g.test_list_argument_with_variables_nullability_float_68 = function(g) -- luache
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_data_json = '{"test":{"arg1":[null]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -5005,8 +5005,8 @@ g.test_list_argument_with_variables_nullability_float_69 = function(g) -- luache
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
-    local variable_value = box.NULL
+    local variable_default = {box.NULL}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -5025,8 +5025,8 @@ g.test_list_argument_with_variables_nullability_float_69 = function(g) -- luache
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_data_json = '{"test":{"arg1":[null]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -5042,8 +5042,8 @@ g.test_list_argument_with_variables_nullability_float_70 = function(g) -- luache
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
-    local variable_value = box.NULL
+    local variable_default = {0}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -5062,8 +5062,8 @@ g.test_list_argument_with_variables_nullability_float_70 = function(g) -- luache
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_data_json = '{"test":{"arg1":[null]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -5080,7 +5080,7 @@ g.test_list_argument_with_variables_nullability_float_71 = function(g) -- luache
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = nil
-    local variable_value = 1.11111
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -5117,7 +5117,7 @@ g.test_list_argument_with_variables_nullability_float_72 = function(g) -- luache
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = box.NULL
-    local variable_value = 1.11111
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -5153,8 +5153,8 @@ g.test_list_argument_with_variables_nullability_float_73 = function(g) -- luache
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
-    local variable_value = 1.11111
+    local variable_default = {}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -5190,8 +5190,8 @@ g.test_list_argument_with_variables_nullability_float_74 = function(g) -- luache
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
-    local variable_value = 1.11111
+    local variable_default = {box.NULL}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -5227,8 +5227,8 @@ g.test_list_argument_with_variables_nullability_float_75 = function(g) -- luache
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
-    local variable_value = 1.11111
+    local variable_default = {0}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -5338,7 +5338,7 @@ g.test_list_argument_with_variables_nullability_float_78 = function(g) -- luache
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
+    local variable_default = {}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -5375,7 +5375,7 @@ g.test_list_argument_with_variables_nullability_float_79 = function(g) -- luache
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
+    local variable_default = {box.NULL}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -5412,7 +5412,7 @@ g.test_list_argument_with_variables_nullability_float_80 = function(g) -- luache
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
+    local variable_default = {0}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -5523,7 +5523,7 @@ g.test_list_argument_with_variables_nullability_float_83 = function(g) -- luache
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
+    local variable_default = {}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -5560,7 +5560,7 @@ g.test_list_argument_with_variables_nullability_float_84 = function(g) -- luache
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
+    local variable_default = {box.NULL}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -5597,7 +5597,7 @@ g.test_list_argument_with_variables_nullability_float_85 = function(g) -- luache
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
+    local variable_default = {0}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -5635,7 +5635,7 @@ g.test_list_argument_with_variables_nullability_float_86 = function(g) -- luache
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = nil
-    local variable_value = nil
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -5654,8 +5654,8 @@ g.test_list_argument_with_variables_nullability_float_86 = function(g) -- luache
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -5672,7 +5672,7 @@ g.test_list_argument_with_variables_nullability_float_87 = function(g) -- luache
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = box.NULL
-    local variable_value = nil
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -5708,8 +5708,8 @@ g.test_list_argument_with_variables_nullability_float_88 = function(g) -- luache
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
-    local variable_value = nil
+    local variable_default = {}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -5728,8 +5728,8 @@ g.test_list_argument_with_variables_nullability_float_88 = function(g) -- luache
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -5745,8 +5745,8 @@ g.test_list_argument_with_variables_nullability_float_89 = function(g) -- luache
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
-    local variable_value = nil
+    local variable_default = {box.NULL}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -5782,8 +5782,8 @@ g.test_list_argument_with_variables_nullability_float_90 = function(g) -- luache
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
-    local variable_value = nil
+    local variable_default = {0}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -5802,8 +5802,8 @@ g.test_list_argument_with_variables_nullability_float_90 = function(g) -- luache
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -5820,7 +5820,7 @@ g.test_list_argument_with_variables_nullability_float_91 = function(g) -- luache
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = nil
-    local variable_value = box.NULL
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -5840,7 +5840,7 @@ g.test_list_argument_with_variables_nullability_float_91 = function(g) -- luache
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_error_json = "Variable \"$var1\" got invalid value null at \"var1[0]\"; Expected non-nullable type \"Float!\" not to be null."
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -5857,7 +5857,7 @@ g.test_list_argument_with_variables_nullability_float_92 = function(g) -- luache
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = box.NULL
-    local variable_value = box.NULL
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -5893,8 +5893,8 @@ g.test_list_argument_with_variables_nullability_float_93 = function(g) -- luache
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
-    local variable_value = box.NULL
+    local variable_default = {}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -5914,7 +5914,7 @@ g.test_list_argument_with_variables_nullability_float_93 = function(g) -- luache
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_error_json = "Variable \"$var1\" got invalid value null at \"var1[0]\"; Expected non-nullable type \"Float!\" not to be null."
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -5930,8 +5930,8 @@ g.test_list_argument_with_variables_nullability_float_94 = function(g) -- luache
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
-    local variable_value = box.NULL
+    local variable_default = {box.NULL}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -5967,8 +5967,8 @@ g.test_list_argument_with_variables_nullability_float_95 = function(g) -- luache
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
-    local variable_value = box.NULL
+    local variable_default = {0}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -5988,7 +5988,7 @@ g.test_list_argument_with_variables_nullability_float_95 = function(g) -- luache
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_error_json = "Variable \"$var1\" got invalid value null at \"var1[0]\"; Expected non-nullable type \"Float!\" not to be null."
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -6005,7 +6005,7 @@ g.test_list_argument_with_variables_nullability_float_96 = function(g) -- luache
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = nil
-    local variable_value = 1.11111
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -6042,7 +6042,7 @@ g.test_list_argument_with_variables_nullability_float_97 = function(g) -- luache
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = box.NULL
-    local variable_value = 1.11111
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -6078,8 +6078,8 @@ g.test_list_argument_with_variables_nullability_float_98 = function(g) -- luache
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
-    local variable_value = 1.11111
+    local variable_default = {}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -6115,8 +6115,8 @@ g.test_list_argument_with_variables_nullability_float_99 = function(g) -- luache
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
-    local variable_value = 1.11111
+    local variable_default = {box.NULL}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -6152,8 +6152,8 @@ g.test_list_argument_with_variables_nullability_float_100 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
-    local variable_value = 1.11111
+    local variable_default = {0}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -6263,7 +6263,7 @@ g.test_list_argument_with_variables_nullability_float_103 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
+    local variable_default = {}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -6300,7 +6300,7 @@ g.test_list_argument_with_variables_nullability_float_104 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
+    local variable_default = {box.NULL}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -6337,7 +6337,7 @@ g.test_list_argument_with_variables_nullability_float_105 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
+    local variable_default = {0}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -6448,7 +6448,7 @@ g.test_list_argument_with_variables_nullability_float_108 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
+    local variable_default = {}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -6485,7 +6485,7 @@ g.test_list_argument_with_variables_nullability_float_109 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
+    local variable_default = {box.NULL}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -6522,7 +6522,7 @@ g.test_list_argument_with_variables_nullability_float_110 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
+    local variable_default = {0}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -6560,7 +6560,7 @@ g.test_list_argument_with_variables_nullability_float_111 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = nil
-    local variable_value = nil
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -6597,7 +6597,7 @@ g.test_list_argument_with_variables_nullability_float_112 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = box.NULL
-    local variable_value = nil
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -6633,8 +6633,8 @@ g.test_list_argument_with_variables_nullability_float_113 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
-    local variable_value = nil
+    local variable_default = {}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -6670,8 +6670,8 @@ g.test_list_argument_with_variables_nullability_float_114 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
-    local variable_value = nil
+    local variable_default = {box.NULL}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -6707,8 +6707,8 @@ g.test_list_argument_with_variables_nullability_float_115 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
-    local variable_value = nil
+    local variable_default = {0}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -6745,7 +6745,7 @@ g.test_list_argument_with_variables_nullability_float_116 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = nil
-    local variable_value = box.NULL
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -6782,7 +6782,7 @@ g.test_list_argument_with_variables_nullability_float_117 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = box.NULL
-    local variable_value = box.NULL
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -6818,8 +6818,8 @@ g.test_list_argument_with_variables_nullability_float_118 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
-    local variable_value = box.NULL
+    local variable_default = {}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -6855,8 +6855,8 @@ g.test_list_argument_with_variables_nullability_float_119 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
-    local variable_value = box.NULL
+    local variable_default = {box.NULL}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -6892,8 +6892,8 @@ g.test_list_argument_with_variables_nullability_float_120 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
-    local variable_value = box.NULL
+    local variable_default = {0}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -6930,7 +6930,7 @@ g.test_list_argument_with_variables_nullability_float_121 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = nil
-    local variable_value = 1.11111
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -6967,7 +6967,7 @@ g.test_list_argument_with_variables_nullability_float_122 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = box.NULL
-    local variable_value = 1.11111
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -7003,8 +7003,8 @@ g.test_list_argument_with_variables_nullability_float_123 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
-    local variable_value = 1.11111
+    local variable_default = {}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -7040,8 +7040,8 @@ g.test_list_argument_with_variables_nullability_float_124 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
-    local variable_value = 1.11111
+    local variable_default = {box.NULL}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -7077,8 +7077,8 @@ g.test_list_argument_with_variables_nullability_float_125 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
-    local variable_value = 1.11111
+    local variable_default = {0}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -7188,7 +7188,7 @@ g.test_list_argument_with_variables_nullability_float_128 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
+    local variable_default = {}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -7225,7 +7225,7 @@ g.test_list_argument_with_variables_nullability_float_129 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
+    local variable_default = {box.NULL}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -7262,7 +7262,7 @@ g.test_list_argument_with_variables_nullability_float_130 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
+    local variable_default = {0}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -7373,7 +7373,7 @@ g.test_list_argument_with_variables_nullability_float_133 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
+    local variable_default = {}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -7410,7 +7410,7 @@ g.test_list_argument_with_variables_nullability_float_134 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
+    local variable_default = {box.NULL}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -7447,7 +7447,7 @@ g.test_list_argument_with_variables_nullability_float_135 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
+    local variable_default = {0}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -7485,7 +7485,7 @@ g.test_list_argument_with_variables_nullability_float_136 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = nil
-    local variable_value = nil
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -7504,8 +7504,8 @@ g.test_list_argument_with_variables_nullability_float_136 = function(g) -- luach
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -7522,7 +7522,7 @@ g.test_list_argument_with_variables_nullability_float_137 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = box.NULL
-    local variable_value = nil
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -7541,8 +7541,8 @@ g.test_list_argument_with_variables_nullability_float_137 = function(g) -- luach
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -7558,8 +7558,8 @@ g.test_list_argument_with_variables_nullability_float_138 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
-    local variable_value = nil
+    local variable_default = {}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -7578,8 +7578,8 @@ g.test_list_argument_with_variables_nullability_float_138 = function(g) -- luach
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -7595,8 +7595,8 @@ g.test_list_argument_with_variables_nullability_float_139 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
-    local variable_value = nil
+    local variable_default = {box.NULL}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -7632,8 +7632,8 @@ g.test_list_argument_with_variables_nullability_float_140 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
-    local variable_value = nil
+    local variable_default = {0}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -7652,8 +7652,8 @@ g.test_list_argument_with_variables_nullability_float_140 = function(g) -- luach
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -7670,7 +7670,7 @@ g.test_list_argument_with_variables_nullability_float_141 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = nil
-    local variable_value = box.NULL
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -7690,7 +7690,7 @@ g.test_list_argument_with_variables_nullability_float_141 = function(g) -- luach
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_error_json = "Variable \"$var1\" got invalid value null at \"var1[0]\"; Expected non-nullable type \"Float!\" not to be null."
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -7707,7 +7707,7 @@ g.test_list_argument_with_variables_nullability_float_142 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = box.NULL
-    local variable_value = box.NULL
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -7727,7 +7727,7 @@ g.test_list_argument_with_variables_nullability_float_142 = function(g) -- luach
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_error_json = "Variable \"$var1\" got invalid value null at \"var1[0]\"; Expected non-nullable type \"Float!\" not to be null."
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -7743,8 +7743,8 @@ g.test_list_argument_with_variables_nullability_float_143 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
-    local variable_value = box.NULL
+    local variable_default = {}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -7764,7 +7764,7 @@ g.test_list_argument_with_variables_nullability_float_143 = function(g) -- luach
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_error_json = "Variable \"$var1\" got invalid value null at \"var1[0]\"; Expected non-nullable type \"Float!\" not to be null."
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -7780,8 +7780,8 @@ g.test_list_argument_with_variables_nullability_float_144 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
-    local variable_value = box.NULL
+    local variable_default = {box.NULL}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -7817,8 +7817,8 @@ g.test_list_argument_with_variables_nullability_float_145 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
-    local variable_value = box.NULL
+    local variable_default = {0}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -7838,7 +7838,7 @@ g.test_list_argument_with_variables_nullability_float_145 = function(g) -- luach
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_error_json = "Variable \"$var1\" got invalid value null at \"var1[0]\"; Expected non-nullable type \"Float!\" not to be null."
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -7855,7 +7855,7 @@ g.test_list_argument_with_variables_nullability_float_146 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = nil
-    local variable_value = 1.11111
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -7892,7 +7892,7 @@ g.test_list_argument_with_variables_nullability_float_147 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = box.NULL
-    local variable_value = 1.11111
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -7928,8 +7928,8 @@ g.test_list_argument_with_variables_nullability_float_148 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
-    local variable_value = 1.11111
+    local variable_default = {}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -7965,8 +7965,8 @@ g.test_list_argument_with_variables_nullability_float_149 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
-    local variable_value = 1.11111
+    local variable_default = {box.NULL}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -8002,8 +8002,8 @@ g.test_list_argument_with_variables_nullability_float_150 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
-    local variable_value = 1.11111
+    local variable_default = {0}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -8113,7 +8113,7 @@ g.test_list_argument_with_variables_nullability_float_153 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
+    local variable_default = {}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -8150,7 +8150,7 @@ g.test_list_argument_with_variables_nullability_float_154 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
+    local variable_default = {box.NULL}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -8187,7 +8187,7 @@ g.test_list_argument_with_variables_nullability_float_155 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
+    local variable_default = {0}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -8298,7 +8298,7 @@ g.test_list_argument_with_variables_nullability_float_158 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
+    local variable_default = {}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -8335,7 +8335,7 @@ g.test_list_argument_with_variables_nullability_float_159 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
+    local variable_default = {box.NULL}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -8372,7 +8372,7 @@ g.test_list_argument_with_variables_nullability_float_160 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
+    local variable_default = {0}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -8410,7 +8410,7 @@ g.test_list_argument_with_variables_nullability_float_161 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = nil
-    local variable_value = nil
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -8447,7 +8447,7 @@ g.test_list_argument_with_variables_nullability_float_162 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = box.NULL
-    local variable_value = nil
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -8483,8 +8483,8 @@ g.test_list_argument_with_variables_nullability_float_163 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
-    local variable_value = nil
+    local variable_default = {}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -8520,8 +8520,8 @@ g.test_list_argument_with_variables_nullability_float_164 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
-    local variable_value = nil
+    local variable_default = {box.NULL}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -8557,8 +8557,8 @@ g.test_list_argument_with_variables_nullability_float_165 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
-    local variable_value = nil
+    local variable_default = {0}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -8595,7 +8595,7 @@ g.test_list_argument_with_variables_nullability_float_166 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = nil
-    local variable_value = box.NULL
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -8632,7 +8632,7 @@ g.test_list_argument_with_variables_nullability_float_167 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = box.NULL
-    local variable_value = box.NULL
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -8668,8 +8668,8 @@ g.test_list_argument_with_variables_nullability_float_168 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
-    local variable_value = box.NULL
+    local variable_default = {}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -8705,8 +8705,8 @@ g.test_list_argument_with_variables_nullability_float_169 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
-    local variable_value = box.NULL
+    local variable_default = {box.NULL}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -8742,8 +8742,8 @@ g.test_list_argument_with_variables_nullability_float_170 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
-    local variable_value = box.NULL
+    local variable_default = {0}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -8780,7 +8780,7 @@ g.test_list_argument_with_variables_nullability_float_171 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = nil
-    local variable_value = 1.11111
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -8817,7 +8817,7 @@ g.test_list_argument_with_variables_nullability_float_172 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = box.NULL
-    local variable_value = 1.11111
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -8853,8 +8853,8 @@ g.test_list_argument_with_variables_nullability_float_173 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
-    local variable_value = 1.11111
+    local variable_default = {}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -8890,8 +8890,8 @@ g.test_list_argument_with_variables_nullability_float_174 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
-    local variable_value = 1.11111
+    local variable_default = {box.NULL}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -8927,8 +8927,8 @@ g.test_list_argument_with_variables_nullability_float_175 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
-    local variable_value = 1.11111
+    local variable_default = {0}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -9038,7 +9038,7 @@ g.test_list_argument_with_variables_nullability_float_178 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
+    local variable_default = {}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -9075,7 +9075,7 @@ g.test_list_argument_with_variables_nullability_float_179 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
+    local variable_default = {box.NULL}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -9112,7 +9112,7 @@ g.test_list_argument_with_variables_nullability_float_180 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
+    local variable_default = {0}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -9223,7 +9223,7 @@ g.test_list_argument_with_variables_nullability_float_183 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
+    local variable_default = {}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -9260,7 +9260,7 @@ g.test_list_argument_with_variables_nullability_float_184 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
+    local variable_default = {box.NULL}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -9297,7 +9297,7 @@ g.test_list_argument_with_variables_nullability_float_185 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
+    local variable_default = {0}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -9335,7 +9335,7 @@ g.test_list_argument_with_variables_nullability_float_186 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = nil
-    local variable_value = nil
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -9354,8 +9354,8 @@ g.test_list_argument_with_variables_nullability_float_186 = function(g) -- luach
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -9372,7 +9372,7 @@ g.test_list_argument_with_variables_nullability_float_187 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = box.NULL
-    local variable_value = nil
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -9408,8 +9408,8 @@ g.test_list_argument_with_variables_nullability_float_188 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
-    local variable_value = nil
+    local variable_default = {}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -9428,8 +9428,8 @@ g.test_list_argument_with_variables_nullability_float_188 = function(g) -- luach
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -9445,8 +9445,8 @@ g.test_list_argument_with_variables_nullability_float_189 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
-    local variable_value = nil
+    local variable_default = {box.NULL}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -9482,8 +9482,8 @@ g.test_list_argument_with_variables_nullability_float_190 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
-    local variable_value = nil
+    local variable_default = {0}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -9502,8 +9502,8 @@ g.test_list_argument_with_variables_nullability_float_190 = function(g) -- luach
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -9520,7 +9520,7 @@ g.test_list_argument_with_variables_nullability_float_191 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = nil
-    local variable_value = box.NULL
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -9540,7 +9540,7 @@ g.test_list_argument_with_variables_nullability_float_191 = function(g) -- luach
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_error_json = "Variable \"$var1\" got invalid value null at \"var1[0]\"; Expected non-nullable type \"Float!\" not to be null."
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -9557,7 +9557,7 @@ g.test_list_argument_with_variables_nullability_float_192 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = box.NULL
-    local variable_value = box.NULL
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -9593,8 +9593,8 @@ g.test_list_argument_with_variables_nullability_float_193 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
-    local variable_value = box.NULL
+    local variable_default = {}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -9614,7 +9614,7 @@ g.test_list_argument_with_variables_nullability_float_193 = function(g) -- luach
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_error_json = "Variable \"$var1\" got invalid value null at \"var1[0]\"; Expected non-nullable type \"Float!\" not to be null."
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -9630,8 +9630,8 @@ g.test_list_argument_with_variables_nullability_float_194 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
-    local variable_value = box.NULL
+    local variable_default = {box.NULL}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -9667,8 +9667,8 @@ g.test_list_argument_with_variables_nullability_float_195 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
-    local variable_value = box.NULL
+    local variable_default = {0}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -9688,7 +9688,7 @@ g.test_list_argument_with_variables_nullability_float_195 = function(g) -- luach
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_error_json = "Variable \"$var1\" got invalid value null at \"var1[0]\"; Expected non-nullable type \"Float!\" not to be null."
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -9705,7 +9705,7 @@ g.test_list_argument_with_variables_nullability_float_196 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = nil
-    local variable_value = 1.11111
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -9742,7 +9742,7 @@ g.test_list_argument_with_variables_nullability_float_197 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = box.NULL
-    local variable_value = 1.11111
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -9778,8 +9778,8 @@ g.test_list_argument_with_variables_nullability_float_198 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
-    local variable_value = 1.11111
+    local variable_default = {}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -9815,8 +9815,8 @@ g.test_list_argument_with_variables_nullability_float_199 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
-    local variable_value = 1.11111
+    local variable_default = {box.NULL}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -9852,8 +9852,8 @@ g.test_list_argument_with_variables_nullability_float_200 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
-    local variable_value = 1.11111
+    local variable_default = {0}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -9963,7 +9963,7 @@ g.test_list_argument_with_variables_nullability_float_203 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
+    local variable_default = {}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -10000,7 +10000,7 @@ g.test_list_argument_with_variables_nullability_float_204 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
+    local variable_default = {box.NULL}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -10037,7 +10037,7 @@ g.test_list_argument_with_variables_nullability_float_205 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
+    local variable_default = {0}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -10148,7 +10148,7 @@ g.test_list_argument_with_variables_nullability_float_208 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
+    local variable_default = {}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -10185,7 +10185,7 @@ g.test_list_argument_with_variables_nullability_float_209 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
+    local variable_default = {box.NULL}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -10222,7 +10222,7 @@ g.test_list_argument_with_variables_nullability_float_210 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
+    local variable_default = {0}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -10260,7 +10260,7 @@ g.test_list_argument_with_variables_nullability_float_211 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = nil
-    local variable_value = nil
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -10297,7 +10297,7 @@ g.test_list_argument_with_variables_nullability_float_212 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = box.NULL
-    local variable_value = nil
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -10333,8 +10333,8 @@ g.test_list_argument_with_variables_nullability_float_213 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
-    local variable_value = nil
+    local variable_default = {}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -10353,8 +10353,8 @@ g.test_list_argument_with_variables_nullability_float_213 = function(g) -- luach
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -10370,8 +10370,8 @@ g.test_list_argument_with_variables_nullability_float_214 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
-    local variable_value = nil
+    local variable_default = {box.NULL}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -10390,8 +10390,8 @@ g.test_list_argument_with_variables_nullability_float_214 = function(g) -- luach
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -10407,8 +10407,8 @@ g.test_list_argument_with_variables_nullability_float_215 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
-    local variable_value = nil
+    local variable_default = {0}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -10427,8 +10427,8 @@ g.test_list_argument_with_variables_nullability_float_215 = function(g) -- luach
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -10445,7 +10445,7 @@ g.test_list_argument_with_variables_nullability_float_216 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = nil
-    local variable_value = box.NULL
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -10482,7 +10482,7 @@ g.test_list_argument_with_variables_nullability_float_217 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = box.NULL
-    local variable_value = box.NULL
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -10518,8 +10518,8 @@ g.test_list_argument_with_variables_nullability_float_218 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
-    local variable_value = box.NULL
+    local variable_default = {}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -10538,8 +10538,8 @@ g.test_list_argument_with_variables_nullability_float_218 = function(g) -- luach
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_data_json = '{"test":{"arg1":[null]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -10555,8 +10555,8 @@ g.test_list_argument_with_variables_nullability_float_219 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
-    local variable_value = box.NULL
+    local variable_default = {box.NULL}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -10575,8 +10575,8 @@ g.test_list_argument_with_variables_nullability_float_219 = function(g) -- luach
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_data_json = '{"test":{"arg1":[null]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -10592,8 +10592,8 @@ g.test_list_argument_with_variables_nullability_float_220 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
-    local variable_value = box.NULL
+    local variable_default = {0}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -10612,8 +10612,8 @@ g.test_list_argument_with_variables_nullability_float_220 = function(g) -- luach
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_data_json = '{"test":{"arg1":[null]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -10630,7 +10630,7 @@ g.test_list_argument_with_variables_nullability_float_221 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = nil
-    local variable_value = 1.11111
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -10667,7 +10667,7 @@ g.test_list_argument_with_variables_nullability_float_222 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = box.NULL
-    local variable_value = 1.11111
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -10703,8 +10703,8 @@ g.test_list_argument_with_variables_nullability_float_223 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
-    local variable_value = 1.11111
+    local variable_default = {}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -10740,8 +10740,8 @@ g.test_list_argument_with_variables_nullability_float_224 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
-    local variable_value = 1.11111
+    local variable_default = {box.NULL}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -10777,8 +10777,8 @@ g.test_list_argument_with_variables_nullability_float_225 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
-    local variable_value = 1.11111
+    local variable_default = {0}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -10888,7 +10888,7 @@ g.test_list_argument_with_variables_nullability_float_228 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
+    local variable_default = {}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -10925,7 +10925,7 @@ g.test_list_argument_with_variables_nullability_float_229 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
+    local variable_default = {box.NULL}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -10962,7 +10962,7 @@ g.test_list_argument_with_variables_nullability_float_230 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
+    local variable_default = {0}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -11073,7 +11073,7 @@ g.test_list_argument_with_variables_nullability_float_233 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
+    local variable_default = {}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -11110,7 +11110,7 @@ g.test_list_argument_with_variables_nullability_float_234 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
+    local variable_default = {box.NULL}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -11147,7 +11147,7 @@ g.test_list_argument_with_variables_nullability_float_235 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
+    local variable_default = {0}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -11185,7 +11185,7 @@ g.test_list_argument_with_variables_nullability_float_236 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = nil
-    local variable_value = nil
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -11222,7 +11222,7 @@ g.test_list_argument_with_variables_nullability_float_237 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = box.NULL
-    local variable_value = nil
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -11258,8 +11258,8 @@ g.test_list_argument_with_variables_nullability_float_238 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
-    local variable_value = nil
+    local variable_default = {}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -11278,8 +11278,8 @@ g.test_list_argument_with_variables_nullability_float_238 = function(g) -- luach
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -11295,8 +11295,8 @@ g.test_list_argument_with_variables_nullability_float_239 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
-    local variable_value = nil
+    local variable_default = {box.NULL}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -11332,8 +11332,8 @@ g.test_list_argument_with_variables_nullability_float_240 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
-    local variable_value = nil
+    local variable_default = {0}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -11352,8 +11352,8 @@ g.test_list_argument_with_variables_nullability_float_240 = function(g) -- luach
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -11370,7 +11370,7 @@ g.test_list_argument_with_variables_nullability_float_241 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = nil
-    local variable_value = box.NULL
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -11407,7 +11407,7 @@ g.test_list_argument_with_variables_nullability_float_242 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = box.NULL
-    local variable_value = box.NULL
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -11443,8 +11443,8 @@ g.test_list_argument_with_variables_nullability_float_243 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
-    local variable_value = box.NULL
+    local variable_default = {}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -11464,7 +11464,7 @@ g.test_list_argument_with_variables_nullability_float_243 = function(g) -- luach
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_error_json = "Variable \"$var1\" got invalid value null at \"var1[0]\"; Expected non-nullable type \"Float!\" not to be null."
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -11480,8 +11480,8 @@ g.test_list_argument_with_variables_nullability_float_244 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
-    local variable_value = box.NULL
+    local variable_default = {box.NULL}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -11517,8 +11517,8 @@ g.test_list_argument_with_variables_nullability_float_245 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
-    local variable_value = box.NULL
+    local variable_default = {0}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -11538,7 +11538,7 @@ g.test_list_argument_with_variables_nullability_float_245 = function(g) -- luach
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_error_json = "Variable \"$var1\" got invalid value null at \"var1[0]\"; Expected non-nullable type \"Float!\" not to be null."
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -11555,7 +11555,7 @@ g.test_list_argument_with_variables_nullability_float_246 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = nil
-    local variable_value = 1.11111
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -11592,7 +11592,7 @@ g.test_list_argument_with_variables_nullability_float_247 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = box.NULL
-    local variable_value = 1.11111
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -11628,8 +11628,8 @@ g.test_list_argument_with_variables_nullability_float_248 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
-    local variable_value = 1.11111
+    local variable_default = {}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -11665,8 +11665,8 @@ g.test_list_argument_with_variables_nullability_float_249 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
-    local variable_value = 1.11111
+    local variable_default = {box.NULL}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -11702,8 +11702,8 @@ g.test_list_argument_with_variables_nullability_float_250 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
-    local variable_value = 1.11111
+    local variable_default = {0}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -11813,7 +11813,7 @@ g.test_list_argument_with_variables_nullability_float_253 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
+    local variable_default = {}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -11850,7 +11850,7 @@ g.test_list_argument_with_variables_nullability_float_254 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
+    local variable_default = {box.NULL}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -11887,7 +11887,7 @@ g.test_list_argument_with_variables_nullability_float_255 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
+    local variable_default = {0}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -11998,7 +11998,7 @@ g.test_list_argument_with_variables_nullability_float_258 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
+    local variable_default = {}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -12035,7 +12035,7 @@ g.test_list_argument_with_variables_nullability_float_259 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
+    local variable_default = {box.NULL}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -12072,7 +12072,7 @@ g.test_list_argument_with_variables_nullability_float_260 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
+    local variable_default = {0}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -12110,7 +12110,7 @@ g.test_list_argument_with_variables_nullability_float_261 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = nil
-    local variable_value = nil
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -12129,8 +12129,8 @@ g.test_list_argument_with_variables_nullability_float_261 = function(g) -- luach
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -12147,7 +12147,7 @@ g.test_list_argument_with_variables_nullability_float_262 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = box.NULL
-    local variable_value = nil
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -12183,8 +12183,8 @@ g.test_list_argument_with_variables_nullability_float_263 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
-    local variable_value = nil
+    local variable_default = {}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -12203,8 +12203,8 @@ g.test_list_argument_with_variables_nullability_float_263 = function(g) -- luach
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -12220,8 +12220,8 @@ g.test_list_argument_with_variables_nullability_float_264 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
-    local variable_value = nil
+    local variable_default = {box.NULL}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -12240,8 +12240,8 @@ g.test_list_argument_with_variables_nullability_float_264 = function(g) -- luach
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -12257,8 +12257,8 @@ g.test_list_argument_with_variables_nullability_float_265 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
-    local variable_value = nil
+    local variable_default = {0}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -12277,8 +12277,8 @@ g.test_list_argument_with_variables_nullability_float_265 = function(g) -- luach
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -12295,7 +12295,7 @@ g.test_list_argument_with_variables_nullability_float_266 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = nil
-    local variable_value = box.NULL
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -12314,8 +12314,8 @@ g.test_list_argument_with_variables_nullability_float_266 = function(g) -- luach
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_data_json = '{"test":{"arg1":[null]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -12332,7 +12332,7 @@ g.test_list_argument_with_variables_nullability_float_267 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = box.NULL
-    local variable_value = box.NULL
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -12368,8 +12368,8 @@ g.test_list_argument_with_variables_nullability_float_268 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
-    local variable_value = box.NULL
+    local variable_default = {}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -12388,8 +12388,8 @@ g.test_list_argument_with_variables_nullability_float_268 = function(g) -- luach
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_data_json = '{"test":{"arg1":[null]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -12405,8 +12405,8 @@ g.test_list_argument_with_variables_nullability_float_269 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
-    local variable_value = box.NULL
+    local variable_default = {box.NULL}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -12425,8 +12425,8 @@ g.test_list_argument_with_variables_nullability_float_269 = function(g) -- luach
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_data_json = '{"test":{"arg1":[null]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -12442,8 +12442,8 @@ g.test_list_argument_with_variables_nullability_float_270 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
-    local variable_value = box.NULL
+    local variable_default = {0}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -12462,8 +12462,8 @@ g.test_list_argument_with_variables_nullability_float_270 = function(g) -- luach
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_data_json = '{"test":{"arg1":[null]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -12480,7 +12480,7 @@ g.test_list_argument_with_variables_nullability_float_271 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = nil
-    local variable_value = 1.11111
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -12517,7 +12517,7 @@ g.test_list_argument_with_variables_nullability_float_272 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = box.NULL
-    local variable_value = 1.11111
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -12553,8 +12553,8 @@ g.test_list_argument_with_variables_nullability_float_273 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
-    local variable_value = 1.11111
+    local variable_default = {}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -12590,8 +12590,8 @@ g.test_list_argument_with_variables_nullability_float_274 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
-    local variable_value = 1.11111
+    local variable_default = {box.NULL}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -12627,8 +12627,8 @@ g.test_list_argument_with_variables_nullability_float_275 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
-    local variable_value = 1.11111
+    local variable_default = {0}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -12738,7 +12738,7 @@ g.test_list_argument_with_variables_nullability_float_278 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
+    local variable_default = {}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -12775,7 +12775,7 @@ g.test_list_argument_with_variables_nullability_float_279 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
+    local variable_default = {box.NULL}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -12812,7 +12812,7 @@ g.test_list_argument_with_variables_nullability_float_280 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
+    local variable_default = {0}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -12923,7 +12923,7 @@ g.test_list_argument_with_variables_nullability_float_283 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
+    local variable_default = {}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -12960,7 +12960,7 @@ g.test_list_argument_with_variables_nullability_float_284 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
+    local variable_default = {box.NULL}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -12997,7 +12997,7 @@ g.test_list_argument_with_variables_nullability_float_285 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
+    local variable_default = {0}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -13035,7 +13035,7 @@ g.test_list_argument_with_variables_nullability_float_286 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = nil
-    local variable_value = nil
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -13054,8 +13054,8 @@ g.test_list_argument_with_variables_nullability_float_286 = function(g) -- luach
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -13072,7 +13072,7 @@ g.test_list_argument_with_variables_nullability_float_287 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = box.NULL
-    local variable_value = nil
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -13108,8 +13108,8 @@ g.test_list_argument_with_variables_nullability_float_288 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
-    local variable_value = nil
+    local variable_default = {}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -13128,8 +13128,8 @@ g.test_list_argument_with_variables_nullability_float_288 = function(g) -- luach
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -13145,8 +13145,8 @@ g.test_list_argument_with_variables_nullability_float_289 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
-    local variable_value = nil
+    local variable_default = {box.NULL}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -13182,8 +13182,8 @@ g.test_list_argument_with_variables_nullability_float_290 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
-    local variable_value = nil
+    local variable_default = {0}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -13202,8 +13202,8 @@ g.test_list_argument_with_variables_nullability_float_290 = function(g) -- luach
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -13220,7 +13220,7 @@ g.test_list_argument_with_variables_nullability_float_291 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = nil
-    local variable_value = box.NULL
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -13240,7 +13240,7 @@ g.test_list_argument_with_variables_nullability_float_291 = function(g) -- luach
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_error_json = "Variable \"$var1\" got invalid value null at \"var1[0]\"; Expected non-nullable type \"Float!\" not to be null."
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -13257,7 +13257,7 @@ g.test_list_argument_with_variables_nullability_float_292 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = box.NULL
-    local variable_value = box.NULL
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -13293,8 +13293,8 @@ g.test_list_argument_with_variables_nullability_float_293 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
-    local variable_value = box.NULL
+    local variable_default = {}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -13314,7 +13314,7 @@ g.test_list_argument_with_variables_nullability_float_293 = function(g) -- luach
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_error_json = "Variable \"$var1\" got invalid value null at \"var1[0]\"; Expected non-nullable type \"Float!\" not to be null."
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -13330,8 +13330,8 @@ g.test_list_argument_with_variables_nullability_float_294 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
-    local variable_value = box.NULL
+    local variable_default = {box.NULL}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -13367,8 +13367,8 @@ g.test_list_argument_with_variables_nullability_float_295 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
-    local variable_value = box.NULL
+    local variable_default = {0}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -13388,7 +13388,7 @@ g.test_list_argument_with_variables_nullability_float_295 = function(g) -- luach
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_error_json = "Variable \"$var1\" got invalid value null at \"var1[0]\"; Expected non-nullable type \"Float!\" not to be null."
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -13405,7 +13405,7 @@ g.test_list_argument_with_variables_nullability_float_296 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = nil
-    local variable_value = 1.11111
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -13442,7 +13442,7 @@ g.test_list_argument_with_variables_nullability_float_297 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = box.NULL
-    local variable_value = 1.11111
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -13478,8 +13478,8 @@ g.test_list_argument_with_variables_nullability_float_298 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
-    local variable_value = 1.11111
+    local variable_default = {}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -13515,8 +13515,8 @@ g.test_list_argument_with_variables_nullability_float_299 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
-    local variable_value = 1.11111
+    local variable_default = {box.NULL}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -13552,8 +13552,8 @@ g.test_list_argument_with_variables_nullability_float_300 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
-    local variable_value = 1.11111
+    local variable_default = {0}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -13663,7 +13663,7 @@ g.test_list_argument_with_variables_nullability_float_303 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
+    local variable_default = {}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -13700,7 +13700,7 @@ g.test_list_argument_with_variables_nullability_float_304 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
+    local variable_default = {box.NULL}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -13737,7 +13737,7 @@ g.test_list_argument_with_variables_nullability_float_305 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
+    local variable_default = {0}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -13848,7 +13848,7 @@ g.test_list_argument_with_variables_nullability_float_308 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
+    local variable_default = {}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -13885,7 +13885,7 @@ g.test_list_argument_with_variables_nullability_float_309 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
+    local variable_default = {box.NULL}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -13922,7 +13922,7 @@ g.test_list_argument_with_variables_nullability_float_310 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
+    local variable_default = {0}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -13960,7 +13960,7 @@ g.test_list_argument_with_variables_nullability_float_311 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = nil
-    local variable_value = nil
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -13997,7 +13997,7 @@ g.test_list_argument_with_variables_nullability_float_312 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = box.NULL
-    local variable_value = nil
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -14033,8 +14033,8 @@ g.test_list_argument_with_variables_nullability_float_313 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
-    local variable_value = nil
+    local variable_default = {}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -14070,8 +14070,8 @@ g.test_list_argument_with_variables_nullability_float_314 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
-    local variable_value = nil
+    local variable_default = {box.NULL}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -14107,8 +14107,8 @@ g.test_list_argument_with_variables_nullability_float_315 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
-    local variable_value = nil
+    local variable_default = {0}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -14145,7 +14145,7 @@ g.test_list_argument_with_variables_nullability_float_316 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = nil
-    local variable_value = box.NULL
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -14182,7 +14182,7 @@ g.test_list_argument_with_variables_nullability_float_317 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = box.NULL
-    local variable_value = box.NULL
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -14218,8 +14218,8 @@ g.test_list_argument_with_variables_nullability_float_318 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
-    local variable_value = box.NULL
+    local variable_default = {}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -14255,8 +14255,8 @@ g.test_list_argument_with_variables_nullability_float_319 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
-    local variable_value = box.NULL
+    local variable_default = {box.NULL}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -14292,8 +14292,8 @@ g.test_list_argument_with_variables_nullability_float_320 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
-    local variable_value = box.NULL
+    local variable_default = {0}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -14330,7 +14330,7 @@ g.test_list_argument_with_variables_nullability_float_321 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = nil
-    local variable_value = 1.11111
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -14367,7 +14367,7 @@ g.test_list_argument_with_variables_nullability_float_322 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = box.NULL
-    local variable_value = 1.11111
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -14403,8 +14403,8 @@ g.test_list_argument_with_variables_nullability_float_323 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
-    local variable_value = 1.11111
+    local variable_default = {}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -14440,8 +14440,8 @@ g.test_list_argument_with_variables_nullability_float_324 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
-    local variable_value = 1.11111
+    local variable_default = {box.NULL}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -14477,8 +14477,8 @@ g.test_list_argument_with_variables_nullability_float_325 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
-    local variable_value = 1.11111
+    local variable_default = {0}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -14588,7 +14588,7 @@ g.test_list_argument_with_variables_nullability_float_328 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
+    local variable_default = {}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -14625,7 +14625,7 @@ g.test_list_argument_with_variables_nullability_float_329 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
+    local variable_default = {box.NULL}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -14662,7 +14662,7 @@ g.test_list_argument_with_variables_nullability_float_330 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
+    local variable_default = {0}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -14773,7 +14773,7 @@ g.test_list_argument_with_variables_nullability_float_333 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
+    local variable_default = {}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -14810,7 +14810,7 @@ g.test_list_argument_with_variables_nullability_float_334 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
+    local variable_default = {box.NULL}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -14847,7 +14847,7 @@ g.test_list_argument_with_variables_nullability_float_335 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
+    local variable_default = {0}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -14885,7 +14885,7 @@ g.test_list_argument_with_variables_nullability_float_336 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = nil
-    local variable_value = nil
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -14922,7 +14922,7 @@ g.test_list_argument_with_variables_nullability_float_337 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = box.NULL
-    local variable_value = nil
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -14958,8 +14958,8 @@ g.test_list_argument_with_variables_nullability_float_338 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
-    local variable_value = nil
+    local variable_default = {}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -14978,8 +14978,8 @@ g.test_list_argument_with_variables_nullability_float_338 = function(g) -- luach
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -14995,8 +14995,8 @@ g.test_list_argument_with_variables_nullability_float_339 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
-    local variable_value = nil
+    local variable_default = {box.NULL}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -15032,8 +15032,8 @@ g.test_list_argument_with_variables_nullability_float_340 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
-    local variable_value = nil
+    local variable_default = {0}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -15052,8 +15052,8 @@ g.test_list_argument_with_variables_nullability_float_340 = function(g) -- luach
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -15070,7 +15070,7 @@ g.test_list_argument_with_variables_nullability_float_341 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = nil
-    local variable_value = box.NULL
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -15107,7 +15107,7 @@ g.test_list_argument_with_variables_nullability_float_342 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = box.NULL
-    local variable_value = box.NULL
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -15143,8 +15143,8 @@ g.test_list_argument_with_variables_nullability_float_343 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
-    local variable_value = box.NULL
+    local variable_default = {}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -15164,7 +15164,7 @@ g.test_list_argument_with_variables_nullability_float_343 = function(g) -- luach
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_error_json = "Variable \"$var1\" got invalid value null at \"var1[0]\"; Expected non-nullable type \"Float!\" not to be null."
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -15180,8 +15180,8 @@ g.test_list_argument_with_variables_nullability_float_344 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
-    local variable_value = box.NULL
+    local variable_default = {box.NULL}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -15217,8 +15217,8 @@ g.test_list_argument_with_variables_nullability_float_345 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
-    local variable_value = box.NULL
+    local variable_default = {0}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -15238,7 +15238,7 @@ g.test_list_argument_with_variables_nullability_float_345 = function(g) -- luach
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_error_json = "Variable \"$var1\" got invalid value null at \"var1[0]\"; Expected non-nullable type \"Float!\" not to be null."
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -15255,7 +15255,7 @@ g.test_list_argument_with_variables_nullability_float_346 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = nil
-    local variable_value = 1.11111
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -15292,7 +15292,7 @@ g.test_list_argument_with_variables_nullability_float_347 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = box.NULL
-    local variable_value = 1.11111
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -15328,8 +15328,8 @@ g.test_list_argument_with_variables_nullability_float_348 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
-    local variable_value = 1.11111
+    local variable_default = {}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -15365,8 +15365,8 @@ g.test_list_argument_with_variables_nullability_float_349 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
-    local variable_value = 1.11111
+    local variable_default = {box.NULL}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -15402,8 +15402,8 @@ g.test_list_argument_with_variables_nullability_float_350 = function(g) -- luach
     local variable_nullability = Nullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
-    local variable_value = 1.11111
+    local variable_default = {0}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -15513,7 +15513,7 @@ g.test_list_argument_with_variables_nullability_float_353 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
+    local variable_default = {}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -15550,7 +15550,7 @@ g.test_list_argument_with_variables_nullability_float_354 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
+    local variable_default = {box.NULL}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -15587,7 +15587,7 @@ g.test_list_argument_with_variables_nullability_float_355 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
+    local variable_default = {0}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -15698,7 +15698,7 @@ g.test_list_argument_with_variables_nullability_float_358 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
+    local variable_default = {}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -15735,7 +15735,7 @@ g.test_list_argument_with_variables_nullability_float_359 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
+    local variable_default = {box.NULL}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -15772,7 +15772,7 @@ g.test_list_argument_with_variables_nullability_float_360 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
+    local variable_default = {0}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -15810,7 +15810,7 @@ g.test_list_argument_with_variables_nullability_float_361 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = nil
-    local variable_value = nil
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -15847,7 +15847,7 @@ g.test_list_argument_with_variables_nullability_float_362 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = box.NULL
-    local variable_value = nil
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -15883,8 +15883,8 @@ g.test_list_argument_with_variables_nullability_float_363 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
-    local variable_value = nil
+    local variable_default = {}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -15920,8 +15920,8 @@ g.test_list_argument_with_variables_nullability_float_364 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
-    local variable_value = nil
+    local variable_default = {box.NULL}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -15957,8 +15957,8 @@ g.test_list_argument_with_variables_nullability_float_365 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
-    local variable_value = nil
+    local variable_default = {0}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -15995,7 +15995,7 @@ g.test_list_argument_with_variables_nullability_float_366 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = nil
-    local variable_value = box.NULL
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -16032,7 +16032,7 @@ g.test_list_argument_with_variables_nullability_float_367 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = box.NULL
-    local variable_value = box.NULL
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -16068,8 +16068,8 @@ g.test_list_argument_with_variables_nullability_float_368 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
-    local variable_value = box.NULL
+    local variable_default = {}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -16105,8 +16105,8 @@ g.test_list_argument_with_variables_nullability_float_369 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
-    local variable_value = box.NULL
+    local variable_default = {box.NULL}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -16142,8 +16142,8 @@ g.test_list_argument_with_variables_nullability_float_370 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
-    local variable_value = box.NULL
+    local variable_default = {0}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -16180,7 +16180,7 @@ g.test_list_argument_with_variables_nullability_float_371 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = nil
-    local variable_value = 1.11111
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -16217,7 +16217,7 @@ g.test_list_argument_with_variables_nullability_float_372 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
     local variable_default = box.NULL
-    local variable_value = 1.11111
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -16253,8 +16253,8 @@ g.test_list_argument_with_variables_nullability_float_373 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = nil
-    local variable_value = 1.11111
+    local variable_default = {}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -16290,8 +16290,8 @@ g.test_list_argument_with_variables_nullability_float_374 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = box.NULL
-    local variable_value = 1.11111
+    local variable_default = {box.NULL}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -16327,8 +16327,8 @@ g.test_list_argument_with_variables_nullability_float_375 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = Nullable
-    local variable_default = 0
-    local variable_value = 1.11111
+    local variable_default = {0}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -16438,7 +16438,7 @@ g.test_list_argument_with_variables_nullability_float_378 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
+    local variable_default = {}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -16475,7 +16475,7 @@ g.test_list_argument_with_variables_nullability_float_379 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
+    local variable_default = {box.NULL}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -16512,7 +16512,7 @@ g.test_list_argument_with_variables_nullability_float_380 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
+    local variable_default = {0}
     local variable_value = nil
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -16623,7 +16623,7 @@ g.test_list_argument_with_variables_nullability_float_383 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
+    local variable_default = {}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -16660,7 +16660,7 @@ g.test_list_argument_with_variables_nullability_float_384 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
+    local variable_default = {box.NULL}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -16697,7 +16697,7 @@ g.test_list_argument_with_variables_nullability_float_385 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
+    local variable_default = {0}
     local variable_value = box.NULL
 
     local query_schema = build_schema(argument_type, argument_nullability,
@@ -16735,7 +16735,7 @@ g.test_list_argument_with_variables_nullability_float_386 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = nil
-    local variable_value = nil
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -16754,8 +16754,8 @@ g.test_list_argument_with_variables_nullability_float_386 = function(g) -- luach
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -16772,7 +16772,7 @@ g.test_list_argument_with_variables_nullability_float_387 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = box.NULL
-    local variable_value = nil
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -16808,8 +16808,8 @@ g.test_list_argument_with_variables_nullability_float_388 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
-    local variable_value = nil
+    local variable_default = {}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -16828,8 +16828,8 @@ g.test_list_argument_with_variables_nullability_float_388 = function(g) -- luach
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -16845,8 +16845,8 @@ g.test_list_argument_with_variables_nullability_float_389 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
-    local variable_value = nil
+    local variable_default = {box.NULL}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -16882,8 +16882,8 @@ g.test_list_argument_with_variables_nullability_float_390 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
-    local variable_value = nil
+    local variable_default = {0}
+    local variable_value = {}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -16902,8 +16902,8 @@ g.test_list_argument_with_variables_nullability_float_390 = function(g) -- luach
         err = res
     end
 
-    local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"nil\" at \"var1[0]\"; Float cannot represent non numeric value: \"nil\""
+    local expected_data_json = '{"test":{"arg1":[]}}'
+    local expected_error_json = nil
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -16920,7 +16920,7 @@ g.test_list_argument_with_variables_nullability_float_391 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = nil
-    local variable_value = box.NULL
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -16940,7 +16940,7 @@ g.test_list_argument_with_variables_nullability_float_391 = function(g) -- luach
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_error_json = "Variable \"$var1\" got invalid value null at \"var1[0]\"; Expected non-nullable type \"Float!\" not to be null."
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -16957,7 +16957,7 @@ g.test_list_argument_with_variables_nullability_float_392 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = box.NULL
-    local variable_value = box.NULL
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -16993,8 +16993,8 @@ g.test_list_argument_with_variables_nullability_float_393 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
-    local variable_value = box.NULL
+    local variable_default = {}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -17014,7 +17014,7 @@ g.test_list_argument_with_variables_nullability_float_393 = function(g) -- luach
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_error_json = "Variable \"$var1\" got invalid value null at \"var1[0]\"; Expected non-nullable type \"Float!\" not to be null."
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -17030,8 +17030,8 @@ g.test_list_argument_with_variables_nullability_float_394 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
-    local variable_value = box.NULL
+    local variable_default = {box.NULL}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -17067,8 +17067,8 @@ g.test_list_argument_with_variables_nullability_float_395 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
-    local variable_value = box.NULL
+    local variable_default = {0}
+    local variable_value = {box.NULL}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -17088,7 +17088,7 @@ g.test_list_argument_with_variables_nullability_float_395 = function(g) -- luach
     end
 
     local expected_data_json = nil
-    local expected_error_json = "Variable \"$var1\" got invalid value \"box.NULL\" at \"var1[0]\"; Float cannot represent non numeric value: \"box.NULL\""
+    local expected_error_json = "Variable \"$var1\" got invalid value null at \"var1[0]\"; Expected non-nullable type \"Float!\" not to be null."
 
     t.assert_equals(result, expected_data_json)
     t.assert_equals(err, expected_error_json)
@@ -17105,7 +17105,7 @@ g.test_list_argument_with_variables_nullability_float_396 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = nil
-    local variable_value = 1.11111
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -17142,7 +17142,7 @@ g.test_list_argument_with_variables_nullability_float_397 = function(g) -- luach
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
     local variable_default = box.NULL
-    local variable_value = 1.11111
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -17178,8 +17178,8 @@ g.test_list_argument_with_variables_nullability_float_398 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = nil
-    local variable_value = 1.11111
+    local variable_default = {}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -17215,8 +17215,8 @@ g.test_list_argument_with_variables_nullability_float_399 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = box.NULL
-    local variable_value = 1.11111
+    local variable_default = {box.NULL}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,
@@ -17252,8 +17252,8 @@ g.test_list_argument_with_variables_nullability_float_400 = function(g) -- luach
     local variable_nullability = NonNullable
     local variable_inner_type = 'float'
     local variable_inner_nullability = NonNullable
-    local variable_default = 0
-    local variable_value = 1.11111
+    local variable_default = {0}
+    local variable_value = {1.11111}
 
     local query_schema = build_schema(argument_type, argument_nullability,
                                       argument_inner_type, argument_inner_nullability,

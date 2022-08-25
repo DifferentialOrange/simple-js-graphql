@@ -184,15 +184,25 @@ function build_variables(argument_type, argument_nullability,
                          variable_value, variable_default) {
     let variables = [];
 
-    if (variable_value !== nil) {
-        if (variable_value === box.NULL) {
-            variables = {var1: null}
+    if (Array.isArray(variable_value)) {
+        if (variable_value[0] == nil) {
+            return {var1: []}
+        } else if (variable_value[0] === box.NULL) {
+            return {var1: [null]}
         } else {
-            variables = {var1: variable_value}
+            return {var1: variable_value}
         }
     }
 
-    return variables
+    if (variable_value !== nil) {
+        if (variable_value === box.NULL) {
+            return {var1: null}
+        } else {
+            return {var1: variable_value}
+        }
+    }
+
+    return []
 }
 
 var rootValue = {
@@ -392,11 +402,23 @@ end
 console.log(test_header)
 
 function to_Lua(v) {
-    if (v == null) {
+    if (v === null) {
         return `nil`
+    } else if (v === box.NULL) {
+        return 'box.NULL'
     }
 
-    return v
+    if (Array.isArray(v)) {
+        if (v[0] === nil) {
+            return '{}'
+        } else if (v[0] === box.NULL) {
+            return '{box.NULL}'
+        } else {
+            return `{${v}}`
+        }
+    }
+
+    return `${v}`
 }
 
 function to_Lua_String(v) {
@@ -742,6 +764,8 @@ build_suite('nonlist_argument_with_variables_nullability',
             [nil, box.NULL, default_value])
 
 // == List argument with variable nullability ==
+// 
+// {nil} is the same as {} in Lua.
 
 build_suite('list_argument_with_variables_nullability',
             'list', [Nullable, NonNullable],
