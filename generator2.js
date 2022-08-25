@@ -59,7 +59,7 @@ function JS_to_Lua_error_map_func(s) {
     if (found) {
         return `"Variable \\\"var1\\\" expected to be non-null"`
     }
-"Variable \"$var1\" of type \"Float\" used in position expecting type \"Float!\"."
+
     const regex7 = /^"Variable \\"\$var1\\" of type \\\"(?<type1>[a-zA-Z]+)\\\" used in position expecting type \\\"(?<type2>[a-zA-Z]+)!\\\"\."$/
     found = s.match(regex7)
 
@@ -70,31 +70,70 @@ function JS_to_Lua_error_map_func(s) {
     return s
 }
 
-function build_schema(argument_type, argument_nullability,
-                         argument_inner_type, argument_inner_nullability, 
-                         argument_value,
-                         variable_type, variable_nullability,
-                         variable_inner_type, variable_inner_nullability, 
-                         variable_value, variable_default) {
-    var js_argument_type = Lua_to_JS_type_map[argument_type]
-    var js_argument_inner_type = Lua_to_JS_type_map[argument_inner_type]
+// == Build JS GraphQL objects ==
 
-    var js_argument_nullability = ``
-    if (argument_nullability == NonNullable) {
-        js_argument_nullability = `!`
-    }
-
-    var js_argument_inner_nullability = ``
-    if (argument_inner_nullability == NonNullable) {
-        js_argument_inner_nullability = `!`
-    }
-
-    var argument_str
-    if (js_argument_type === 'list') {
-        argument_str = `[${js_argument_inner_type}${js_argument_inner_nullability}]${js_argument_nullability}`
+function get_JS_nullability(nullability) {
+    if (nullability == NonNullable) {
+        return `!`
     } else {
-        argument_str = `${js_argument_type}${js_argument_nullability}`
+        return ``
     }
+}
+
+function get_JS_type(type, nullability,
+                     inner_type, inner_nullability) {
+    let js_type = Lua_to_JS_type_map[type]
+    let js_nullability = get_JS_nullability(nullability)
+    let js_inner_type = Lua_to_JS_type_map[inner_type]
+    let js_inner_nullability = get_JS_nullability(inner_nullability)
+
+    if (js_type === 'list') {
+        return `[${js_inner_type}${js_inner_nullability}]${js_nullability}`
+    } else {
+        return `${js_type}${js_nullability}`
+    }
+}
+
+function get_JS_value(value, plain_nil_as_null) {
+    if (Array.isArray(value)) {
+        if (value[0] === nil) {
+            return `[]`
+        } else if (value[0] === box.NULL) {
+            return `[null]`
+        } else {
+            return JSON.stringify(value)
+        }
+    } else {
+        if (value === nil) {
+            if (plain_nil_as_null) {
+                return `null`
+            } else {
+                return ``
+            }
+        } else if (value === box.NULL) {
+            return `null`
+        } else {
+            return JSON.stringify(value)
+        }
+    }
+}
+
+function get_JS_default_value(value) {
+    return get_JS_value(value, false)
+}
+
+function get_JS_argument_value(value) {
+    return get_JS_value(value, true)
+}
+
+function build_schema(argument_type, argument_nullability,
+                      argument_inner_type, argument_inner_nullability, 
+                      argument_value,
+                      variable_type, variable_nullability,
+                      variable_inner_type, variable_inner_nullability, 
+                      variable_value, variable_default) {
+    let argument_str = get_JS_type(argument_type, argument_nullability,
+                                   argument_inner_type, argument_inner_nullability)
 
     var schema_str = `
         type result {
@@ -110,76 +149,49 @@ function build_schema(argument_type, argument_nullability,
 };
 
 function build_query(argument_type, argument_nullability,
+                     argument_inner_type, argument_inner_nullability, 
+                     argument_value,
+                     variable_type, variable_nullability,
+                     variable_inner_type, variable_inner_nullability, 
+                     variable_value, variable_default) {
+    let js_argument_type = Lua_to_JS_type_map[argument_type]
+
+    if (variable_type !== null) {
+        let js_variable_type = Lua_to_JS_type_map[variable_type]
+        let variable_str = get_JS_type(variable_type, variable_nullability,
+                                       variable_inner_type, variable_inner_nullability)
+
+        let default_str = ``
+        let js_variable_default = get_JS_default_value(variable_default)
+        if (js_variable_default !== ``) {
+            default_str = ` = ${js_variable_default}`
+        }
+
+        return `query MyQuery($var1: ${variable_str}${default_str}) { test(arg1: $var1) { arg1 } }`
+    } else {
+        let js_argument_value = get_JS_argument_value(argument_value)
+        return `query MyQuery { test(arg1: ${js_argument_value}) { arg1 } }`
+    }
+};
+
+function build_variables(argument_type, argument_nullability,
                          argument_inner_type, argument_inner_nullability, 
                          argument_value,
                          variable_type, variable_nullability,
                          variable_inner_type, variable_inner_nullability, 
                          variable_value, variable_default) {
-    let js_argument_type = Lua_to_JS_type_map[argument_type]
-    let js_argument_inner_type = Lua_to_JS_type_map[argument_inner_type]
-    let js_variable_type = Lua_to_JS_type_map[variable_type]
-    let js_variable_inner_type = Lua_to_JS_type_map[variable_inner_type]
+    let variables = [];
 
-    var js_variable_nullability = ``
-    if (variable_nullability == NonNullable) {
-        js_variable_nullability = `!`
-    }
-
-    var js_variable_inner_nullability = ``
-    if (variable_inner_nullability == NonNullable) {
-        js_variable_inner_nullability = `!`
-    }
-
-    // Variable case
-    if (variable_type !== null) {
-        let variable_str
-        if (js_variable_type === 'list') {
-            variable_str = `[${js_variable_inner_type}${js_variable_inner_nullability_str}]${js_variable_inner_nullability}`
+    if (variable_value !== nil) {
+        if (variable_value === box.NULL) {
+            variables = {var1: null}
         } else {
-          variable_str = `${js_variable_type}${js_variable_nullability}`
+            variables = {var1: variable_value}
         }
-
-        let default_str = ``
-        if (js_variable_type === 'list') {
-            if (variable_default[0] === nil) {
-                default_str = ` = []`
-            } else if (variable_default[0] === box.NULL) {
-                default_str = ` = [null]`
-            } else {
-                var js_default = JSON.stringify(variable_default)
-                default_str = ` = [${js_default}]`
-            }
-        } else {
-            if (variable_default === nil) {
-                default_str = ``
-            } else if (variable_default === box.NULL) {
-                default_str = ` = null`
-            } else {
-                var js_default = JSON.stringify(variable_default)
-                default_str = ` = ${js_default}`
-            }
-        }
-
-        return `query MyQuery($var1: ${variable_str}${default_str}) { test(arg1: $var1) { arg1 } }`
     }
 
-    // No variables case
-    if ((argument_value === nil) || (argument_value === box.NULL)) {
-        return `query MyQuery { test(arg1: null) { arg1 } }`
-    } else {
-        if (js_argument_type === 'list') {
-            if (argument_value[0] === nil) {
-                return `query MyQuery { test(arg1: []) { arg1 } }`
-            } else if (argument_value[0] === box.NULL) {
-                return `query MyQuery { test(arg1: [null]) { arg1 } }`
-            } else {
-                var js_value = JSON.stringify(argument_value)
-                return `query MyQuery { test(arg1: ${js_value}) { arg1 } }`
-            }
-        }
-        return `query MyQuery { test(arg1: ${argument_value}) { arg1 } }`
-    }
-};
+    return variables
+}
 
 var rootValue = {
     test: (args) => {
@@ -505,25 +517,6 @@ g.test_${suite_name}_${argument_type}_${i} = function(g) -- luacheck: no unused 
 end`
 }
 
-function build_variables(argument_type, argument_nullability,
-                         argument_inner_type, argument_inner_nullability, 
-                         argument_value,
-                         variable_type, variable_nullability,
-                         variable_inner_type, variable_inner_nullability, 
-                         variable_value, variable_default) {
-    let variables = [];
-
-    if (variable_value !== nil) {
-        if (variable_value === box.NULL) {
-            variables = {var1: null}
-        } else {
-            variables = {var1: variable_value}
-        }
-    }
-
-    return variables
-}
-
 async function build_suite(suite_name,
                      argument_type, argument_nullabilities,
                      argument_inner_type, argument_inner_nullabilities,
@@ -671,6 +664,7 @@ async function build_suite(suite_name,
             })
         })
     })
+    // TO DO: list with variables
 }
 
 // == Non-list argument nullability ==
