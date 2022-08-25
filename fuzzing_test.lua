@@ -205,7 +205,7 @@ g.test_nonlist_argument_nullability_float_1 = function(g) -- luacheck: no unused
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery { test(arg1: null) { arg1 } }"
+    local query = 'query MyQuery { test(arg1: null) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -242,7 +242,7 @@ g.test_nonlist_argument_nullability_float_2 = function(g) -- luacheck: no unused
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery { test(arg1: null) { arg1 } }"
+    local query = 'query MyQuery { test(arg1: null) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -279,7 +279,7 @@ g.test_nonlist_argument_nullability_float_3 = function(g) -- luacheck: no unused
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery { test(arg1: 1.11111) { arg1 } }"
+    local query = 'query MyQuery { test(arg1: 1.11111) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -316,7 +316,7 @@ g.test_nonlist_argument_nullability_float_4 = function(g) -- luacheck: no unused
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery { test(arg1: null) { arg1 } }"
+    local query = 'query MyQuery { test(arg1: null) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -353,7 +353,7 @@ g.test_nonlist_argument_nullability_float_5 = function(g) -- luacheck: no unused
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery { test(arg1: null) { arg1 } }"
+    local query = 'query MyQuery { test(arg1: null) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -390,7 +390,7 @@ g.test_nonlist_argument_nullability_float_6 = function(g) -- luacheck: no unused
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery { test(arg1: 1.11111) { arg1 } }"
+    local query = 'query MyQuery { test(arg1: 1.11111) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -427,7 +427,7 @@ g.test_list_argument_nullability_list_1 = function(g) -- luacheck: no unused arg
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery { test(arg1: null) { arg1 } }"
+    local query = 'query MyQuery { test(arg1: null) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -464,7 +464,7 @@ g.test_list_argument_nullability_list_2 = function(g) -- luacheck: no unused arg
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery { test(arg1: null) { arg1 } }"
+    local query = 'query MyQuery { test(arg1: null) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -501,7 +501,7 @@ g.test_list_argument_nullability_list_3 = function(g) -- luacheck: no unused arg
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery { test(arg1: []) { arg1 } }"
+    local query = 'query MyQuery { test(arg1: []) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -538,7 +538,7 @@ g.test_list_argument_nullability_list_4 = function(g) -- luacheck: no unused arg
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery { test(arg1: [null]) { arg1 } }"
+    local query = 'query MyQuery { test(arg1: [null]) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -575,7 +575,7 @@ g.test_list_argument_nullability_list_5 = function(g) -- luacheck: no unused arg
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery { test(arg1: [1.11111]) { arg1 } }"
+    local query = 'query MyQuery { test(arg1: [1.11111]) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -612,7 +612,7 @@ g.test_list_argument_nullability_list_6 = function(g) -- luacheck: no unused arg
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery { test(arg1: null) { arg1 } }"
+    local query = 'query MyQuery { test(arg1: null) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -649,7 +649,7 @@ g.test_list_argument_nullability_list_7 = function(g) -- luacheck: no unused arg
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery { test(arg1: null) { arg1 } }"
+    local query = 'query MyQuery { test(arg1: null) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -686,7 +686,7 @@ g.test_list_argument_nullability_list_8 = function(g) -- luacheck: no unused arg
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery { test(arg1: []) { arg1 } }"
+    local query = 'query MyQuery { test(arg1: []) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -723,7 +723,7 @@ g.test_list_argument_nullability_list_9 = function(g) -- luacheck: no unused arg
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery { test(arg1: [null]) { arg1 } }"
+    local query = 'query MyQuery { test(arg1: [null]) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -760,7 +760,7 @@ g.test_list_argument_nullability_list_10 = function(g) -- luacheck: no unused ar
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery { test(arg1: [1.11111]) { arg1 } }"
+    local query = 'query MyQuery { test(arg1: [1.11111]) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -797,7 +797,7 @@ g.test_list_argument_nullability_list_11 = function(g) -- luacheck: no unused ar
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery { test(arg1: null) { arg1 } }"
+    local query = 'query MyQuery { test(arg1: null) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -834,7 +834,7 @@ g.test_list_argument_nullability_list_12 = function(g) -- luacheck: no unused ar
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery { test(arg1: null) { arg1 } }"
+    local query = 'query MyQuery { test(arg1: null) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -871,7 +871,7 @@ g.test_list_argument_nullability_list_13 = function(g) -- luacheck: no unused ar
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery { test(arg1: []) { arg1 } }"
+    local query = 'query MyQuery { test(arg1: []) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -908,7 +908,7 @@ g.test_list_argument_nullability_list_14 = function(g) -- luacheck: no unused ar
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery { test(arg1: [null]) { arg1 } }"
+    local query = 'query MyQuery { test(arg1: [null]) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -945,7 +945,7 @@ g.test_list_argument_nullability_list_15 = function(g) -- luacheck: no unused ar
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery { test(arg1: [1.11111]) { arg1 } }"
+    local query = 'query MyQuery { test(arg1: [1.11111]) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -982,7 +982,7 @@ g.test_list_argument_nullability_list_16 = function(g) -- luacheck: no unused ar
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery { test(arg1: null) { arg1 } }"
+    local query = 'query MyQuery { test(arg1: null) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -1019,7 +1019,7 @@ g.test_list_argument_nullability_list_17 = function(g) -- luacheck: no unused ar
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery { test(arg1: null) { arg1 } }"
+    local query = 'query MyQuery { test(arg1: null) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -1056,7 +1056,7 @@ g.test_list_argument_nullability_list_18 = function(g) -- luacheck: no unused ar
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery { test(arg1: []) { arg1 } }"
+    local query = 'query MyQuery { test(arg1: []) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -1093,7 +1093,7 @@ g.test_list_argument_nullability_list_19 = function(g) -- luacheck: no unused ar
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery { test(arg1: [null]) { arg1 } }"
+    local query = 'query MyQuery { test(arg1: [null]) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -1130,7 +1130,7 @@ g.test_list_argument_nullability_list_20 = function(g) -- luacheck: no unused ar
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery { test(arg1: [1.11111]) { arg1 } }"
+    local query = 'query MyQuery { test(arg1: [1.11111]) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -1167,7 +1167,7 @@ g.test_nonlist_argument_with_variables_nullability_float_1 = function(g) -- luac
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -1204,7 +1204,7 @@ g.test_nonlist_argument_with_variables_nullability_float_2 = function(g) -- luac
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float = null) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float = null) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -1241,7 +1241,7 @@ g.test_nonlist_argument_with_variables_nullability_float_3 = function(g) -- luac
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float = 1.11111) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float = 1.11111) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -1278,7 +1278,7 @@ g.test_nonlist_argument_with_variables_nullability_float_4 = function(g) -- luac
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -1315,7 +1315,7 @@ g.test_nonlist_argument_with_variables_nullability_float_5 = function(g) -- luac
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float = null) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float = null) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -1352,7 +1352,7 @@ g.test_nonlist_argument_with_variables_nullability_float_6 = function(g) -- luac
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float = 1.11111) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float = 1.11111) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -1389,7 +1389,7 @@ g.test_nonlist_argument_with_variables_nullability_float_7 = function(g) -- luac
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -1426,7 +1426,7 @@ g.test_nonlist_argument_with_variables_nullability_float_8 = function(g) -- luac
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float = null) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float = null) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -1463,7 +1463,7 @@ g.test_nonlist_argument_with_variables_nullability_float_9 = function(g) -- luac
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float = 1.11111) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float = 1.11111) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -1500,7 +1500,7 @@ g.test_nonlist_argument_with_variables_nullability_float_10 = function(g) -- lua
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float!) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float!) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -1537,7 +1537,7 @@ g.test_nonlist_argument_with_variables_nullability_float_11 = function(g) -- lua
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float! = null) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float! = null) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -1574,7 +1574,7 @@ g.test_nonlist_argument_with_variables_nullability_float_12 = function(g) -- lua
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float! = 1.11111) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float! = 1.11111) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -1611,7 +1611,7 @@ g.test_nonlist_argument_with_variables_nullability_float_13 = function(g) -- lua
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float!) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float!) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -1648,7 +1648,7 @@ g.test_nonlist_argument_with_variables_nullability_float_14 = function(g) -- lua
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float! = null) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float! = null) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -1685,7 +1685,7 @@ g.test_nonlist_argument_with_variables_nullability_float_15 = function(g) -- lua
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float! = 1.11111) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float! = 1.11111) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -1722,7 +1722,7 @@ g.test_nonlist_argument_with_variables_nullability_float_16 = function(g) -- lua
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float!) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float!) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -1759,7 +1759,7 @@ g.test_nonlist_argument_with_variables_nullability_float_17 = function(g) -- lua
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float! = null) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float! = null) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -1796,7 +1796,7 @@ g.test_nonlist_argument_with_variables_nullability_float_18 = function(g) -- lua
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float! = 1.11111) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float! = 1.11111) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -1833,7 +1833,7 @@ g.test_nonlist_argument_with_variables_nullability_float_19 = function(g) -- lua
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -1870,7 +1870,7 @@ g.test_nonlist_argument_with_variables_nullability_float_20 = function(g) -- lua
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float = null) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float = null) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -1907,7 +1907,7 @@ g.test_nonlist_argument_with_variables_nullability_float_21 = function(g) -- lua
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float = 1.11111) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float = 1.11111) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -1944,7 +1944,7 @@ g.test_nonlist_argument_with_variables_nullability_float_22 = function(g) -- lua
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -1981,7 +1981,7 @@ g.test_nonlist_argument_with_variables_nullability_float_23 = function(g) -- lua
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float = null) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float = null) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -2018,7 +2018,7 @@ g.test_nonlist_argument_with_variables_nullability_float_24 = function(g) -- lua
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float = 1.11111) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float = 1.11111) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -2055,7 +2055,7 @@ g.test_nonlist_argument_with_variables_nullability_float_25 = function(g) -- lua
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -2092,7 +2092,7 @@ g.test_nonlist_argument_with_variables_nullability_float_26 = function(g) -- lua
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float = null) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float = null) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -2129,7 +2129,7 @@ g.test_nonlist_argument_with_variables_nullability_float_27 = function(g) -- lua
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float = 1.11111) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float = 1.11111) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -2166,7 +2166,7 @@ g.test_nonlist_argument_with_variables_nullability_float_28 = function(g) -- lua
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float!) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float!) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -2203,7 +2203,7 @@ g.test_nonlist_argument_with_variables_nullability_float_29 = function(g) -- lua
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float! = null) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float! = null) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -2240,7 +2240,7 @@ g.test_nonlist_argument_with_variables_nullability_float_30 = function(g) -- lua
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float! = 1.11111) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float! = 1.11111) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -2277,7 +2277,7 @@ g.test_nonlist_argument_with_variables_nullability_float_31 = function(g) -- lua
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float!) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float!) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -2314,7 +2314,7 @@ g.test_nonlist_argument_with_variables_nullability_float_32 = function(g) -- lua
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float! = null) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float! = null) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -2351,7 +2351,7 @@ g.test_nonlist_argument_with_variables_nullability_float_33 = function(g) -- lua
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float! = 1.11111) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float! = 1.11111) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -2388,7 +2388,7 @@ g.test_nonlist_argument_with_variables_nullability_float_34 = function(g) -- lua
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float!) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float!) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -2425,7 +2425,7 @@ g.test_nonlist_argument_with_variables_nullability_float_35 = function(g) -- lua
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float! = null) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float! = null) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
@@ -2462,7 +2462,7 @@ g.test_nonlist_argument_with_variables_nullability_float_36 = function(g) -- lua
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "query MyQuery($var1: Float! = 1.11111) { test(arg1: $var1) { arg1 } }"
+    local query = 'query MyQuery($var1: Float! = 1.11111) { test(arg1: $var1) { arg1 } }'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 

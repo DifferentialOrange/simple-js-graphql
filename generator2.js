@@ -467,7 +467,7 @@ g.test_${suite_name}_${argument_type}_${i} = function(g) -- luacheck: no unused 
                                       variable_type, variable_nullability,
                                       variable_inner_type, variable_inner_nullability,
                                       variable_value, variable_default)
-    local query = "${query}"
+    local query = '${query}'
 
     local ok, res = pcall(helpers.check_request, query, query_schema, nil, nil, { variables = { var1 = variable_value }})
 
