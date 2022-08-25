@@ -109,7 +109,6 @@ function build_query(argument_type, argument_nullability,
 
 var rootValue = {
     test: (args) => {
-        // console.log(args)
         return args;
     },
 };
@@ -318,7 +317,6 @@ local function build_schema(argument_type, argument_nullability,
 end
 
 `
-
 console.log(test_header)
 
 function build_test_case(response, suite_name, i,
@@ -389,8 +387,6 @@ g.test_${suite_name}_${argument_type}_${i} = function()
     t.assert_equals(err, expected_error_json)
 end`
 }
-
-let promises = []
 
 async function build_suite(suite_name,
                      argument_type, argument_nullabilities,
@@ -464,43 +460,10 @@ async function build_suite(suite_name,
 // We use `test(arg1: null)` for both nil and box.NULL,
 // so the behavior will be the same for them.
 
-// suite_name = 'nonlist_argument_nullability'
-// argument_type = Float
-// argument_nullabilities = [Nullable, NonNullable]
-// argument_inner_type = null
-// argument_inner_nullability = null
-// argument_values = [nil, box.NULL, value]
-
 build_suite('nonlist_argument_nullability',
             Float, [Nullable, NonNullable],
             null, [],
             [nil, box.NULL, value])
-
-// argument_nullabilities.forEach( function (argument_nullability) {
-//     argument_values.forEach( function (argument_value)  {
-//         var schema = build_schema(argument_type, argument_nullability,
-//                                   argument_inner_type, argument_inner_nullability, 
-//                                   argument_value)
-//         var query = build_query(argument_type, argument_nullability,
-//                                 argument_inner_type, argument_inner_nullability, 
-//                                 argument_value)
-        
-//         promises.push(graphql({
-//             schema,
-//             source: query,
-//             rootValue,
-//         }).then((response) => {
-//             i = i + 1
-//             return build_test_case(response, suite_name, i,
-//                                    argument_type, argument_nullability,
-//                                    argument_inner_type, argument_inner_nullability, 
-//                                    argument_value,
-//                                    query)
-//         }))
-//     })
-// });
-
-// collect_promises()
 
 // == List argument nullability ==
 // 
@@ -517,60 +480,3 @@ build_suite('list_argument_nullability',
             'list', [Nullable, NonNullable],
             Float, [Nullable, NonNullable],
             [nil, box.NULL, [nil], [box.NULL], [value]])
-
-// suite_name = 'list_argument_nullability'
-// argument_type = 'list'
-// argument_nullabilities = [Nullable, NonNullable]
-// argument_inner_type = Float
-// argument_inner_nullabilities = [Nullable, NonNullable]
-// argument_values = [nil, box.NULL, [nil], [box.NULL], [value]]
-
-// i = 0
-
-// argument_nullabilities.forEach( function (argument_nullability) {
-//     argument_inner_nullabilities.forEach( function (argument_inner_nullability) {
-//         argument_values.forEach( function (argument_value)  {
-//             var schema = build_schema(argument_type, argument_nullability,
-//                                       argument_inner_type, argument_inner_nullability, 
-//                                       argument_value)
-//             var query = build_query(argument_type, argument_nullability,
-//                                     argument_inner_type, argument_inner_nullability, 
-//                                     argument_value)
-            
-//             promises.push(graphql({
-//                 schema,
-//                 source: query,
-//                 rootValue,
-//             }).then((response) => {
-//                 i = i + 1
-//                 return build_test_case(response, suite_name, i,
-//                                        argument_type, argument_nullability,
-//                                        argument_inner_type, argument_inner_nullability, 
-//                                        argument_value,
-//                                        query)
-//             }))
-//         })
-//     })
-// });
-
-// collect_promises()
-
-// var i = 0
-
-// async function final() {
-//     var i = 0
-
-//     for (i = 0; i < promises.length; i++) {
-//         output_file += await promises[i]
-//     }
-
-//     const fs = require('fs')
-
-//     fs.writeFile('./fuzzing_test.lua', output_file, err => {
-//         if (err) {
-//             console.error(err)
-//             return
-//         }
-//     })
-
-// }
