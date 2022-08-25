@@ -13,58 +13,59 @@ var Lua_to_JS_type_map = {
     "list": "list",
 }
 
+var Lua_to_JS_error = [
+    {
+        "regex": /^"Expected value of type \\\"(?<type>[a-zA-Z]+)!\\\", found null\."$/,
+        "return": function(groups) {
+            return `"Expected non-null for \\\"NonNull(${groups.type})\\\", got null"`
+        }
+    },
+    {
+        "regex": /^"Expected value of type \\\"\[(?<type>[a-zA-Z]+)\]!\\\", found null\."$/,
+        "return": function(groups) {
+            return `"Expected non-null for \\\"NonNull(List(${groups.type}))\\\", got null"`
+        }
+    },
+    {
+        "regex": /^"Expected value of type \\\"\[(?<type>[a-zA-Z]+)!\]\\\", found null\."$/,
+        "return": function(groups) {
+            return `"Expected non-null for \\\"List(NonNull(${groups.type}))\\\", got null"`
+        }
+    },
+    {
+        "regex": /^"Expected value of type \\\"\[(?<type>[a-zA-Z]+)!\]!\\\", found null\."$/,
+        "return": function(groups) {
+            return `"Expected non-null for \\\"NonNull(List(NonNull(${groups.type})))\\\", got null"`
+        }
+    },
+    {
+        "regex": /^"Variable \\"\$var1\\" of required type \\\"(?<type>[a-zA-Z]+)!\\\" was not provided\."$/,
+        "return": function(groups) {
+            return `"Variable \\\"var1\\\" expected to be non-null"`
+        }
+    },
+    {
+        "regex": /^"Variable \\"\$var1\\" of non-null type \\\"(?<type>[a-zA-Z]+)!\\\" must not be null\."$/,
+        "return": function(groups) {
+            return `"Variable \\\"var1\\\" expected to be non-null"`
+        }
+    },
+    {
+        "regex": /^"Variable \\"\$var1\\" of type \\\"(?<type1>[a-zA-Z]+)\\\" used in position expecting type \\\"(?<type2>[a-zA-Z]+)!\\\"\."$/,
+        "return": function(groups) {
+            return `"Variable \\\"var1\\\" type mismatch: the variable type \\\"${groups.type1}\\\" is not compatible with the argument type \\\"NonNull(${groups.type2})\\\""`
+        }
+    },
+]
+
 function JS_to_Lua_error_map_func(s) {
-    if (s === 'nil') {
-        return s
-    }
+    let j = 0
+    for (j = 0; j < Lua_to_JS_error.length; j++) {
+        let found = s.match(Lua_to_JS_error[j].regex)
 
-    const regex = /^"Expected value of type \\\"(?<type>[a-zA-Z]+)!\\\", found null\."$/
-    let found = s.match(regex)
-
-    if (found) {
-        return `"Expected non-null for \\\"NonNull(${found.groups.type})\\\", got null"`
-    }
-
-    const regex2 = /^"Expected value of type \\\"\[(?<type>[a-zA-Z]+)\]!\\\", found null\."$/
-    found = s.match(regex2)
-
-    if (found) {
-        return `"Expected non-null for \\\"NonNull(List(${found.groups.type}))\\\", got null"`
-    }
-
-    const regex3 = /^"Expected value of type \\\"\[(?<type>[a-zA-Z]+)!\]\\\", found null\."$/
-    found = s.match(regex3)
-
-    if (found) {
-        return `"Expected non-null for \\\"List(NonNull(${found.groups.type}))\\\", got null"`
-    }
-
-    const regex4 = /^"Expected value of type \\\"\[(?<type>[a-zA-Z]+)!\]!\\\", found null\."$/
-    found = s.match(regex4)
-
-    if (found) {
-        return `"Expected non-null for \\\"NonNull(List(NonNull(${found.groups.type})))\\\", got null"`
-    }
-
-    const regex5 = /^"Variable \\"\$var1\\" of required type \\\"(?<type>[a-zA-Z]+)!\\\" was not provided\."$/
-    found = s.match(regex5)
-
-    if (found) {
-        return `"Variable \\\"var1\\\" expected to be non-null"`
-    }
-
-    const regex6 = /^"Variable \\"\$var1\\" of non-null type \\\"(?<type>[a-zA-Z]+)!\\\" must not be null\."$/
-    found = s.match(regex6)
-
-    if (found) {
-        return `"Variable \\\"var1\\\" expected to be non-null"`
-    }
-
-    const regex7 = /^"Variable \\"\$var1\\" of type \\\"(?<type1>[a-zA-Z]+)\\\" used in position expecting type \\\"(?<type2>[a-zA-Z]+)!\\\"\."$/
-    found = s.match(regex7)
-
-    if (found) {
-        return `"Variable \\\"var1\\\" type mismatch: the variable type \\\"${found.groups.type1}\\\" is not compatible with the argument type \\\"NonNull(${found.groups.type2})\\\""`
+        if (found) {
+            return Lua_to_JS_error[j].return(found.groups)
+        }
     }
 
     return s
@@ -541,6 +542,7 @@ async function build_suite(suite_name,
                 })
             })
         } else {
+            // Variables case
             argument_nullabilities.forEach( async function (argument_nullability) {
                 variable_nullabilities.forEach( async function (variable_nullability)  {
                     variable_values.forEach( async function (variable_value)  {
